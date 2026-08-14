@@ -12,10 +12,13 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;height:100%}
+  #app{min-height:100%}
   html{overflow-anchor:none}
-  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;overflow-anchor:none}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji','Android Emoji',sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;overflow-anchor:none}
   button{font-family:inherit}
   .hidden{display:none!important}
+  .hide-wide{display:none}
+  @media (max-width:820px){.hide-wide{display:block}}
   .btn{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:5px;padding:8px 15px;font-size:13.5px;font-weight:600;cursor:pointer;background:var(--blue);color:#fff}
   .btn:hover{background:var(--blueD)}
   .btn.plain{background:#fff;color:#333;border:1px solid #b6bfca}
@@ -45,8 +48,8 @@
   .creds code{background:#eef2f7;padding:1px 6px;border-radius:4px;font-family:var(--mono);font-size:12px}
 
   /* module overlays */
-  .module{position:fixed;inset:0;background:#fff;z-index:60;display:flex;flex-direction:column}
-  .modtop{background:#0b2e4a;color:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;font-size:13px}
+  .module{position:fixed;inset:0;background:#fff;z-index:60;display:flex;flex-direction:column;height:100%;min-height:100dvh;max-height:100dvh;overflow:hidden}
+  .modtop{background:#0b2e4a;color:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;font-size:13px;flex:0 0 auto}
   .modtop .x{background:transparent;border:0;color:#fff;font-size:16px;cursor:pointer;padding:4px 9px;border-radius:4px;margin-left:auto}
   .modtop .x:hover{background:rgba(255,255,255,.15)}
 
@@ -200,12 +203,14 @@
   .signin .pfield{margin:10px 0}
 
   /* windows */
-  .wall{flex:1;position:relative;background:linear-gradient(150deg,#1a6fc4,#0d4f9b 45%,#08386f);overflow:hidden}
-  .deskicon{position:absolute;width:86px;text-align:center;color:#fff;cursor:pointer;padding:6px 2px;border:1px solid transparent;border-radius:3px}
+  .wall{flex:1 1 auto;min-height:0;position:relative;background:linear-gradient(150deg,#1a6fc4,#0d4f9b 45%,#08386f);overflow:hidden}
+  .deskicon{position:absolute;left:16px;width:86px;text-align:center;color:#fff;cursor:pointer;padding:6px 2px;border:1px solid transparent;border-radius:3px}
+  .di0{top:14px}.di1{top:112px}.di2{top:210px}.di3{top:316px}
   .deskicon:hover{background:rgba(255,255,255,.14)}
   .deskicon .di{font-size:28px;display:block}
   .deskicon .dn{font-size:11px;text-shadow:0 1px 2px rgba(0,0,0,.6)}
   .wintask{height:44px;background:#1c1c1c;display:flex;align-items:center;padding:0 8px;flex:0 0 auto;z-index:40}
+  .startbtn.on{background:#3a3a3a;border-bottom:2px solid #4cc2ff}
   .startbtn{background:transparent;border:0;color:#fff;cursor:pointer;padding:6px 12px;border-radius:3px;display:flex;align-items:center;gap:7px;font-size:13.5px}
   .startbtn:hover{background:rgba(255,255,255,.12)}
   .winflag{width:18px;height:18px;display:grid;grid-template-columns:1fr 1fr;gap:1px}
@@ -214,13 +219,19 @@
   .tray{margin-left:auto;display:flex;align-items:center;gap:6px;color:#e0e0e0;font-size:12px}
   .win{position:absolute;background:#fff;border:1px solid #9aa3ad;box-shadow:0 10px 34px rgba(0,0,0,.4);display:flex;flex-direction:column;border-radius:2px;overflow:hidden;left:6%;top:7%;width:88%;height:80%}
   .wintitle{height:32px;background:#fff;display:flex;align-items:center;gap:8px;padding-left:10px;font-size:13px;border-bottom:1px solid #e3e3e3;flex:0 0 auto}
+  .smflag{display:flex;align-items:center;gap:10px;margin:12px 22px 0;padding:11px 14px;border:1px solid #f0c36d;background:#fdf6e3;border-radius:4px;font-size:13px;color:#6b5200}
+  .smflag .fi{font-size:17px;flex:0 0 auto}
+  .smflag .ft{flex:1;font-weight:600}
+  .smflag button{flex:0 0 auto}
+  .pulse{animation:pulseb 1.6s ease-in-out 3}
+  @keyframes pulseb{0%,100%{box-shadow:0 0 0 0 rgba(211,155,0,.5)}50%{box-shadow:0 0 0 7px rgba(211,155,0,0)}}
   .winbtns{margin-left:auto;display:flex;height:100%}
   .winbtn{width:38px;height:100%;border:0;background:transparent;font-size:12px;cursor:pointer}
   .winbtn:hover{background:#e5e5e5}
   .winbtn.close:hover{background:#e81123;color:#fff}
   .winbody{flex:1;overflow:auto;display:flex;flex-direction:column;min-height:0;background:#fff}
-  .winsub{padding:10px 14px;border-bottom:1px solid #e3e3e3;font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:10px;flex:0 0 auto}
-  .winsub .actions{margin-left:auto;display:flex;gap:6px}
+  .winsub{padding:10px 14px;border-bottom:1px solid #e3e3e3;font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:10px;flex:0 0 auto;flex-wrap:wrap}
+  .winsub .actions{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
   .mmccols{display:flex;flex:1;min-height:0}
   .mmctree{width:250px;border-right:1px solid #e3e3e3;overflow:auto;overflow-anchor:none;padding:4px 2px;background:#fff}
   .mmclist{flex:1;overflow:auto;overflow-anchor:none;background:#fff}
@@ -309,6 +320,62 @@
   .gtbl th{background:#f7f8fa;text-align:left;padding:6px 8px;border:1px solid #e6e8ec;font-size:11px;color:#4a5563}
   .gtbl td{padding:6px 8px;border:1px solid #e6e8ec;vertical-align:top;color:#333}
   .gintro{font-size:13px;color:#333;margin:2px 2px 8px;line-height:1.6}
+
+  /* ══════════════ MOBILE / NARROW SCREENS ══════════════ */
+  @media (max-width: 820px){
+    /* windows go full-bleed so nothing is clipped off-screen */
+    .win{left:0;top:0;width:100%;height:100%;border:0;border-radius:0}
+    .wall{min-height:200px}
+    /* MMC consoles stack instead of sitting side by side */
+    .mmccols{flex-direction:column}
+    .mmctree{width:auto;max-height:34vh;border-right:0;border-bottom:1px solid #e3e3e3}
+    .mmclist{min-height:150px}
+    /* desktop icons flow in a row across the top instead of overlapping */
+    .wall .deskicon{position:static;display:inline-block;vertical-align:top;width:33%;max-width:110px;margin:6px 0}
+    .di0,.di1,.di2,.di3{top:auto}
+    .wall{padding-top:4px}
+    /* the app window must sit above the flowed icons */
+    .win{position:absolute;z-index:30}
+    /* taskbar + start menu */
+    .wintask{height:52px;overflow-x:auto}
+    .tasksearch{display:none}
+    .startbtn .tbl{display:none}
+    .startbtn{padding:6px 9px;font-size:16px}
+    .tray{font-size:11px}
+    .ctx{min-width:0;left:6px!important;right:6px!important;width:auto}
+    /* THE AZURE PORTAL IS NOT REDESIGNED ON MOBILE.
+       It keeps its exact desktop chrome (single-row header, persistent Favorites rail,
+       inline search, account badge) and pans horizontally, like the real portal does
+       in a phone browser. Nothing is hidden, nothing is restacked. */
+    .portalmod{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+    .portalmod .aztop,.portalmod .azbody{min-width:1180px}
+    .portalmod .azbody{height:calc(100% - 48px)}
+    /* always-reachable exit while the portal is panned (mobile only) */
+    .mobexit{position:fixed;right:10px;top:8px;z-index:160;width:34px;height:34px;border:0;border-radius:50%;
+      background:rgba(11,46,74,.92);color:#fff;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+    /* wizards: buttons wrap and stay reachable */
+    .wizfoot{flex-wrap:wrap;gap:8px}
+    .wizbtn{flex:1 1 44%;padding:11px 10px}
+    .winsub{font-size:12.5px}
+    .smflag{flex-direction:column;align-items:flex-start;margin:10px 12px 0}
+    .smflag button{width:100%}
+    /* dialogs */
+    .dlg{width:96vw}
+    /* guide panel full screen */
+    .guidepanel{width:100%;max-width:100%}
+    .guidefab{right:10px;bottom:60px;padding:0;width:46px;height:46px;border-radius:50%;font-size:19px;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+    .guidefab .gtxt{display:none}
+    /* keep the wizard footer clear of the floating button */
+    .wizfoot{padding-right:66px}
+    /* MMC list tables scroll inside their pane */
+    .listtbl{display:block;overflow-x:auto;white-space:nowrap}
+    .hub{padding:18px 12px 70px}
+    .modgrid{grid-template-columns:1fr}
+  }
+  @media (max-width: 480px){
+    .wall .deskicon{width:48%;max-width:none}
+    .btabs{flex-wrap:wrap}
+  }
 </style>
 </head>
 <body>
@@ -323,17 +390,22 @@ const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
 const norm = s => (s==null?"":String(s)).toLowerCase().replace(/\s+/g," ").trim();
 const B = String.fromCharCode(92);
 const UNC = B+B+"avdprofilescorp.file.core.windows.net"+B+"fslogix";
+function labUnc(){
+  const a=inv.storage[0], sh=inv.shares[0];
+  if(!a) return UNC;
+  return B+B+a.name+".file.core.windows.net"+B+(sh?sh.name:"fslogix");
+}
 
 /* ── inventory ── */
-const inv = { rg:[], vnet:[], vm:[], storage:[], hostpool:[], ad:{forest:"",ou:false,group:false,users:[],sync:false}, gpo:{fslogix:false}, session:{connected:false,vhdx:false} };
+const inv = { rg:[], vnet:[], vm:[], storage:[], hostpool:[], ad:{forest:"",ou:false,group:false,users:[],sync:false}, gpo:{fslogix:false,name:""}, avd:{assigned:false,registered:false}, shares:[], dev:{}, session:{connected:false,vhdx:false,vhdxShare:""} };
 const CRED = { portal:"admin@contoso.onmicrosoft.com", admin:"avdadmin", pw:"P@ssw0rd1234!", user:"avduser01@corp.contoso.com" };
 
 const state = {
   module:null, // portal | dc01 | adsync01 | web | storage
-  p:{ signedIn:false, email:"", view:"home", service:null, blade:null, form:{}, tab:0, deploy:{active:false,step:0,name:"",res:"",resName:"",msg:""}, notifs:[], notifOpen:false, search:"", searchOpen:false, catalog:0, railCollapsed:false, favs:["all","rg","vm","vnet","storage","avd","entra","sub"], filter:"" },
+  p:{ signedIn:false, email:"", view:"home", service:null, blade:null, form:{}, tab:0, deploy:{active:false,step:0,name:"",res:"",resName:"",msg:""}, notifs:[], notifOpen:false, search:"", searchOpen:false, catalog:0, railCollapsed:false, railOpen:false, favs:["all","rg","vm","vnet","storage","avd","entra","sub"], filter:"" },
   w:{ vm:null, stage:"rdp", lockStep:"lock", fail:false, app:null, smWiz:-1, roleChecked:false, featAdded:false, promoteWiz:-1, entStep:0, dlg:null, gpoCreated:false, gp:{enabled:null,vhdloc:"",ptype:"",size:""}, adsel:"corp.contoso.com", gpmsel:"corp.contoso.com" },
-  web:{ stage:"signin", inSession:false },
-  storage:{ view:"overview" },
+  web:{ stage:"signin", upn:"", err:"" },
+  storage:{ view:"overview", share:"", dlg:null },
   ctx:null,
   guideOpen:false
 };
@@ -423,34 +495,58 @@ const ALL_SERVICES=[
 ];
 const PORTAL={
   rg:{service:"Resource groups",icon:"folder",fields:[
-    {id:"name",label:"Resource group name",type:"text",ph:"rg-avd",test:v=>norm(v)==="rg-avd",err:"Name must be rg-avd"},
-    {id:"region",label:"Region",type:"select",options:["East US","West US 2","Central India"],test:v=>v==="East US",err:"Region must be East US"}]},
+    {id:"name",label:"Resource group name",type:"text",ph:"rg-avd",
+      test:v=>/^[A-Za-z0-9._()-]{1,90}$/.test((v||"").trim()),
+      err:"Enter a resource group name (letters, numbers, - _ . ( ), max 90)"},
+    {id:"region",label:"Region",type:"select",options:["East US","West US 2","Central India","West Europe","Southeast Asia"]}]},
   vnet:{service:"Virtual networks",icon:"vnet",fields:[
-    {id:"name",label:"Virtual network name",type:"text",ph:"avd-vnet",test:v=>norm(v)==="avd-vnet",err:"Name must be avd-vnet"},
-    {id:"region",label:"Region",type:"select",options:["East US","West US 2","Central India"],test:v=>v==="East US",err:"Region must be East US"},
-    {id:"space",label:"Address space",type:"text",ph:"10.10.0.0/16",test:v=>norm(v)==="10.10.0.0/16",err:"Must be 10.10.0.0/16"},
-    {id:"sub1",label:"Subnet snet-adds (domain controllers)",type:"text",ph:"10.10.1.0/24",test:v=>norm(v)==="10.10.1.0/24",err:"Must be 10.10.1.0/24"},
-    {id:"sub2",label:"Subnet snet-session (session hosts)",type:"text",ph:"10.10.2.0/24",test:v=>norm(v)==="10.10.2.0/24",err:"Must be 10.10.2.0/24"},
-    {id:"sub3",label:"Subnet snet-files (private endpoints)",type:"text",ph:"10.10.3.0/24",test:v=>norm(v)==="10.10.3.0/24",err:"Must be 10.10.3.0/24"},
-    {id:"dns",label:"DNS servers (custom)",type:"text",ph:"10.10.1.4",test:v=>norm(v)==="10.10.1.4",err:"Must be 10.10.1.4"}]},
+    {id:"name",label:"Virtual network name",type:"text",ph:"avd-vnet",
+      test:v=>/^[A-Za-z0-9][A-Za-z0-9._-]{0,62}[A-Za-z0-9_]$/.test((v||"").trim()),
+      err:"Enter a virtual network name (2-64 chars, start with a letter or number)"},
+    {id:"region",label:"Region",type:"select",options:["East US","West US 2","Central India","West Europe","Southeast Asia"]},
+    {id:"space",label:"Address space",type:"text",ph:"10.10.0.0/16",
+      test:v=>isCidr(v),err:"Enter a valid CIDR block, e.g. 10.10.0.0/16"},
+    {id:"sub1",label:"Subnet snet-adds (domain controllers)",type:"text",ph:"10.10.1.0/24",
+      test:v=>isCidr(v),err:"Enter a valid subnet CIDR, e.g. 10.10.1.0/24"},
+    {id:"sub2",label:"Subnet snet-session (session hosts)",type:"text",ph:"10.10.2.0/24",
+      test:v=>isCidr(v),err:"Enter a valid subnet CIDR, e.g. 10.10.2.0/24"},
+    {id:"sub3",label:"Subnet snet-files (private endpoints)",type:"text",ph:"10.10.3.0/24",
+      test:v=>isCidr(v),err:"Enter a valid subnet CIDR, e.g. 10.10.3.0/24"},
+    {id:"dns",label:"DNS servers (custom)",type:"text",ph:"10.10.1.4",
+      test:v=>isIp(v),err:"Enter the DNS server IP, e.g. 10.10.1.4"}]},
   vm:{service:"Virtual machines",icon:"vm",fields:[
-    {id:"name",label:"Virtual machine name",type:"text",ph:"dc01",test:v=>norm(v)==="dc01",err:"VM name must be dc01"},
-    {id:"image",label:"Image",type:"select",options:["Windows Server 2022 Datacenter","Windows Server 2019 Datacenter","Windows 11 Enterprise"],test:v=>v==="Windows Server 2022 Datacenter",err:"Pick Windows Server 2022 Datacenter"},
-    {id:"size",label:"Size",type:"select",options:["Standard_B2ms (2 vCPU / 8 GB)","Standard_B2s (2 vCPU / 4 GB)","Standard_D2s_v3"],test:v=>v.indexOf("B2ms")>=0,err:"Pick Standard_B2ms"},
-    {id:"admin",label:"Administrator username",type:"text",ph:"avdadmin",test:v=>norm(v)==="avdadmin",err:"Username must be avdadmin"},
-    {id:"pw",label:"Password",type:"password",ph:"P@ssw0rd1234!",test:v=>(v||"").length>=8,err:"At least 8 characters"}]},
+    {id:"name",label:"Virtual machine name",type:"text",ph:"dc01",
+      test:v=>/^[A-Za-z0-9][A-Za-z0-9-]{0,14}$/.test((v||"").trim()),
+      err:"Enter a computer name (1-15 chars, letters/numbers/hyphen)"},
+    {id:"image",label:"Image",type:"select",options:["Windows Server 2022 Datacenter","Windows Server 2019 Datacenter","Windows 11 Enterprise"]},
+    {id:"size",label:"Size",type:"select",options:["Standard_B2ms (2 vCPU / 8 GB)","Standard_B2s (2 vCPU / 4 GB)","Standard_D2s_v3 (2 vCPU / 8 GB)","Standard_D4s_v3 (4 vCPU / 16 GB)"]},
+    {id:"admin",label:"Administrator username",type:"text",ph:"avdadmin",
+      test:v=>/^[A-Za-z][A-Za-z0-9._-]{1,19}$/.test((v||"").trim()) && !/^(administrator|admin|root|guest)$/i.test((v||"").trim()),
+      err:"Enter an admin username (not a reserved name like 'administrator')"},
+    {id:"pw",label:"Password",type:"password",ph:"P@ssw0rd1234!",
+      test:v=>isStrongPw(v),
+      err:"Password must be 12+ chars with upper, lower, number and symbol"}]},
   storage:{service:"Storage accounts",icon:"storage",fields:[
-    {id:"name",label:"Storage account name",type:"text",ph:"avdprofilescorp",test:v=>norm(v)==="avdprofilescorp",err:"Name must be avdprofilescorp"},
-    {id:"perf",label:"Performance",type:"radio",options:["Premium (SSD file shares)","Standard"],test:v=>v==="Premium (SSD file shares)",err:"Pick Premium"},
-    {id:"auth",label:"Identity-based access for file shares",type:"radio",options:["Active Directory (AD DS)","Microsoft Entra Kerberos","None (storage key only)"],test:v=>v==="Active Directory (AD DS)",err:"Pick Active Directory (AD DS)"}]},
+    {id:"name",label:"Storage account name",type:"text",ph:"avdprofilescorp",
+      test:v=>/^[a-z0-9]{3,24}$/.test((v||"").trim()),
+      err:"3-24 characters, lowercase letters and numbers only"},
+    {id:"perf",label:"Performance",type:"radio",options:["Premium (SSD file shares)","Standard (HDD)"]},
+    {id:"auth",label:"Identity-based access for file shares",type:"radio",options:["Active Directory (AD DS)","Microsoft Entra Kerberos","None (storage key only)"]}]},
   hostpool:{service:"Azure Virtual Desktop",icon:"avd",fields:[
-    {id:"name",label:"Host pool name",type:"text",ph:"AVD-HP-Pooled",test:v=>norm(v).indexOf("avd-hp")===0,err:"Must start with AVD-HP"},
-    {id:"type",label:"Host pool type",type:"radio",options:["Pooled (multi-session)","Personal"],test:v=>v==="Pooled (multi-session)",err:"Pick Pooled"},
-    {id:"img",label:"Session host image",type:"select",options:["Windows 11 Enterprise multi-session 23H2 + M365 Apps","Windows 10 Enterprise multi-session 22H2","Windows Server 2022"],test:v=>v.indexOf("Windows 11 Enterprise multi-session")===0,err:"Pick Windows 11 multi-session"},
-    {id:"count",label:"Number of session hosts",type:"text",ph:"2",test:v=>parseInt(v,10)>=2,err:"At least 2"},
-    {id:"domain",label:"Domain to join",type:"text",ph:"corp.contoso.com",test:v=>norm(v)==="corp.contoso.com",err:"Must be corp.contoso.com"},
-    {id:"ws",label:"Workspace name",type:"text",ph:"AVD-Workspace",test:v=>norm(v)==="avd-workspace",err:"Must be AVD-Workspace"}]}
+    {id:"name",label:"Host pool name",type:"text",ph:"AVD-HP-Pooled",
+      test:v=>/^[A-Za-z0-9][A-Za-z0-9._-]{1,63}$/.test((v||"").trim()),
+      err:"Enter a host pool name (2-64 chars)"},
+    {id:"type",label:"Host pool type",type:"radio",options:["Pooled (multi-session)","Personal (dedicated)"]},
+    {id:"img",label:"Session host image",type:"select",options:["Windows 11 Enterprise multi-session 23H2 + M365 Apps","Windows 11 Enterprise multi-session 23H2","Windows 10 Enterprise multi-session 22H2","Windows Server 2022"]},
+    {id:"count",label:"Number of session hosts",type:"text",ph:"2",
+      test:v=>{const n=parseInt(v||"",10);return n>=1&&n<=50;},err:"Enter a number of session hosts between 1 and 50"},
+    {id:"domain",label:"Domain to join",type:"text",ph:"corp.contoso.com",
+      test:v=>isFqdn(v),err:"Enter the AD domain FQDN, e.g. corp.contoso.com"},
+    {id:"ws",label:"Workspace name",type:"text",ph:"AVD-Workspace",
+      test:v=>/^[A-Za-z0-9][A-Za-z0-9._-]{1,63}$/.test((v||"").trim()),
+      err:"Enter a workspace name (2-64 chars)"}]}
 };
+
 const CATALOG=[
  {name:"Get started", items:[["folder","Resource group","rg"],["vnet","Virtual network","vnet"],["vm","Virtual machine","vm"],["storage","Storage account","storage"],["avd","Host pool (Azure Virtual Desktop)","hostpool"]]},
  {name:"Compute", items:[["vm","Virtual machine","vm"],["avd","Host pool","hostpool"],["vm","App Service","decoy"],["vm","Azure Kubernetes Service","decoy"]]},
@@ -459,14 +555,35 @@ const CATALOG=[
  {name:"Databases", items:[["storage","SQL Database","decoy"],["storage","Cosmos DB","decoy"]]},
  {name:"Identity", items:[["entra","Microsoft Entra ID","entra"],["entra","Managed identities","decoy"]]}
 ];
+function isIp(v){ const m=/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/.exec((v||"").trim()); if(!m) return false; for(let i=1;i<=4;i++){ if(+m[i]>255) return false; } return true; }
+function isCidr(v){ const p=(v||"").trim().split("/"); if(p.length!==2) return false; const n=parseInt(p[1],10); return isIp(p[0]) && n>=8 && n<=29; }
+function isFqdn(v){ return /^[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+$/.test((v||"").trim()); }
+function isStrongPw(v){ v=v||""; return v.length>=12 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /[0-9]/.test(v) && /[^A-Za-z0-9]/.test(v); }
+function nameTaken(res,name){
+  const n=norm(name);
+  const lists={rg:inv.rg,vnet:inv.vnet,vm:inv.vm,storage:inv.storage,hostpool:inv.hostpool};
+  return (lists[res]||[]).some(x=>norm(x.name)===n);
+}
 function pform(res){ if(!state.p.form[res]) state.p.form[res]={}; return state.p.form[res]; }
+/* seed a fresh create form so <select> fields carry their visible default value */
+function pformInit(res){
+  const r=PORTAL[res]; if(!r) return;
+  const f={}; r.fields.forEach(x=>{ if(x.type==="select" && x.options && x.options.length) f[x.id]=x.options[0]; });
+  state.p.form[res]=f;
+}
 function pfieldHtml(res,f){
   const val=pform(res)[f.id];
   if(f.type==="text"||f.type==="password") return '<input type="'+f.type+'" value="'+esc(val||"")+'" placeholder="'+esc(f.ph||"")+'" data-action="pf" data-arg="'+res+":"+f.id+'">';
   if(f.type==="select") return '<select data-action="pf" data-arg="'+res+":"+f.id+'">'+f.options.map(o=>'<option'+(val===o?' selected':'')+'>'+o+'</option>').join("")+'</select>';
   if(f.type==="radio") return f.options.map(o=>'<label class="qopt"><input type="radio" name="r'+res+f.id+'" value="'+esc(o)+'"'+(val===o?' checked':'')+' data-action="pf" data-arg="'+res+":"+f.id+'"><span>'+o+'</span></label>').join("");
 }
-function pError(res){ const r=PORTAL[res]; const errs=[]; r.fields.forEach(f=>{ if(!f.test(pform(res)[f.id])) errs.push(f.err); }); return errs; }
+function pError(res){
+  const r=PORTAL[res]; const errs=[]; const form=pform(res);
+  r.fields.forEach(f=>{ if(f.test && !f.test(form[f.id])) errs.push(f.err); });
+  const nm=(form.name||"").trim();
+  if(nm && nameTaken(res,nm)) errs.push("The name '"+nm+"' is already taken in this subscription. Choose a different name.");
+  return errs;
+}
 function notifyPortal(icon,title,msg){ state.p.notifs.unshift({icon:icon,title:title,msg:msg,time:nowClock()}); }
 
 function portalHtml(){
@@ -475,9 +592,11 @@ function portalHtml(){
     return '<div class="module"><div class="signin-wrap"><div class="signin"><div class="logo"><span class="ms">MS</span> Microsoft</div><h2>Sign in</h2>'+
     '<div class="pfield"><label>Email or phone</label><input type="text" value="'+esc(p.email)+'" placeholder="admin@contoso.onmicrosoft.com" data-action="portalemail"></div>'+
     '<button class="btn" style="width:100%" data-action="portalnext">Next</button>'+
-    '<p class="hint" style="margin-top:10px">Lab credential: admin@contoso.onmicrosoft.com</p></div></div></div>';
+    '<p class="hint" style="margin-top:10px">Lab credential: admin@contoso.onmicrosoft.com</p>'+
+    '<p style="margin-top:12px;text-align:center"><button class="btn plain small" data-action="close">← Back to lab home</button></p></div></div></div>';
   }
-  return '<div class="module">'+
+  return '<div class="module portalmod">'+
+    '<button class="mobexit hide-wide" data-action="close" title="Back to lab home">✕</button>'+
     '<div class="aztop">'+azTopHtml()+'</div>'+
     '<div class="azbody"><div class="rail'+(p.railCollapsed?' narrow':'')+'" data-scroll="rail">'+railHtml()+'</div><div class="pz-main" data-scroll="pzmain">'+portalViewportHtml()+'</div></div>'+
     (p.notifOpen? notifPanelHtml() : '')+
@@ -495,6 +614,7 @@ function azTopHtml(){
     '<div class="bellrel"><button class="azicon" data-action="pnotif" title="Notifications">'+ic('bell')+(p.notifs.length?'<span class="azbadge">'+p.notifs.length+'</span>':'')+'</button></div>'+
     '<button class="azicon" data-action="decoyshell" title="Help">'+ic('help')+'</button>'+
     '<div class="azdir" data-action="pdir"><span class="avatar">A</span><span><span>admin@contoso.onmicrosoft.com</span><div class="dirs">AVD Lab Subscription</div></span></div>'+
+    '<button class="azicon" data-action="close" title="Back to lab home" style="margin-left:4px">'+ic('x')+'</button>'+
     '</div>';
 }
 function searchDropHtml(){
@@ -511,7 +631,7 @@ function searchDropHtml(){
   let h='<div class="searchdrop">';
   if(svcs.length) h+='<div class="sd-sec">Services</div>'+svcs.map(s=>'<div class="sd-row" '+(s[2]?'data-action="pnav" data-arg="'+s[2]+'"':'data-action="decoyshell"')+'>'+ic(s[1])+'<span>'+s[0]+'</span><span class="sub">Service</span></div>').join("");
   if(rfilter.length) h+='<div class="sd-sec">Resources</div>'+rfilter.map(r=>'<div class="sd-row" data-action="popen" data-arg="'+r.arg+'">'+ic(r.ic)+'<span>'+r.name+'</span><span class="sub">'+r.sub+'</span></div>').join("");
-  if(docs.length) h+='<div class="sd-sec">Documentation</div>'+docs.map(d=>'<div class="sd-row" data-action="decoyshell">'+ic('doc')+'<span>'+d[0]+'</span><span class="sub">'+d[1]+'</span></div>').join("");
+  if(docs.length) h+='<div class="sd-sec">Documentation</div>'+docs.map(d=>'<div class="sd-row" data-action="decoyshell">'+ic(d[0])+'<span>'+esc(d[1])+'</span><span class="sub">'+esc(d[2])+'</span></div>').join("");
   if(!svcs.length&&!rfilter.length&&!q) h+='<div class="sd-row"><span>Start typing to search services and resources…</span></div>';
   if(q&&!svcs.length&&!rfilter.length) h+='<div class="sd-row"><span>No results for "'+esc(q)+'"</span></div>';
   return h+'</div>';
@@ -687,7 +807,17 @@ function detailHtml(b){
     '<div class="essential">'+info.map(([k,v])=>'<div class="ess-item"><div class="ek">'+k+'</div><div class="ev">'+esc(v)+'</div></div>').join("")+'</div>'+
     (kind==='vm'&&(name==='dc01'||name==='adsync01')?'<button class="btn" data-action="module" data-arg="'+name+'">'+ic('shell')+' Connect</button>':'')+
     (kind==='storage'?'<button class="btn" data-action="module" data-arg="storage">Browse file shares</button>':'')+
-    (kind==='hp'?'<button class="btn" data-action="webopen">Launch web client</button>':'')+
+    (kind==='hp'?
+      '<div class="ptitle" style="font-size:15px;margin-top:18px">Application group — '+esc(name)+'-DAG</div>'+
+      '<table class="ptable"><tr><th>Setting</th><th>Value</th></tr>'+
+      '<tr><td>Assigned group</td><td>'+(inv.avd.assigned?'<span class="pill ok">'+esc(inv.ad.groupName||"group")+'</span>':'<span style="color:#9aa3ad">No assignments</span>')+'</td></tr>'+
+      '<tr><td>Workspace registration</td><td>'+(inv.avd.registered?'<span class="pill ok">'+esc((inv.hostpool[0]||{}).ws||"workspace")+'</span>':'<span style="color:#9aa3ad">Not registered</span>')+'</td></tr></table>'+
+      '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">'+
+      (inv.avd.assigned?'':'<button class="cmdbtn primary" data-action="avd-assign">'+ic('plus')+' Add assignment</button>')+
+      (inv.avd.registered?'':'<button class="cmdbtn" data-action="avd-register">'+ic('check')+' Register in workspace</button>')+
+      '</div>'+
+      '<div style="margin-top:14px"><button class="btn" data-action="webopen">Launch web client</button></div>'
+    :'')+
     '<div style="margin-top:20px"><button class="cmdbtn" data-action="pdelete" data-arg="'+kind+':'+name+'">'+ic('x')+' Delete</button></div>'+
   '</div>';
 }
@@ -699,8 +829,8 @@ function createBladeHtml(res){
   if(tab===0){
     body=r.fields.map(f=>{
       const val=pform(res)[f.id];
-      const ok = val!=null && f.test(val);
-      const err = val!=null && !f.test(val);
+      const ok = f.test ? (val!=null && f.test(val)) : (val!=null && val!=="");
+      const err = f.test ? (val!=null && val!=="" && !f.test(val)) : false;
       return '<div class="pfield"><label>'+f.label+'</label>'+pfieldHtml(res,f)+(err?'<div class="ferr">'+ic('x')+' '+f.err+'</div>':(ok?'<div class="fok">'+ic('check')+'</div>':''))+'</div>';
     }).join("");
   } else if(tab===1){
@@ -712,7 +842,7 @@ function createBladeHtml(res){
   }
   let foot;
   if(!isReview){ foot='<span></span><span style="display:flex;gap:8px"><button class="cmdbtn" data-action="preview" data-arg="'+res+'">Review + create</button><button class="cmdbtn primary" data-action="ptab" data-arg="'+(tab+1)+'">Next: '+(tab===0?'Tags':'Review + create')+'</button></span>'; }
-  else { foot='<span><button class="cmdbtn" data-action="ptab" data-arg="1">← Previous</button></span><span><button class="cmdbtn primary" data-action="pcreate2" data-arg="'+res+'"'+(pError(res).length?' disabled':'')+'>Create</button></span>'; }
+  else { foot='<span><button class="cmdbtn" data-action="ptab" data-arg="1">← Previous</button></span><span><button class="cmdbtn primary" data-action="pcreate2" data-arg="'+res+'">Create</button></span>'; }
   return '<div class="bladehead"><div class="bt">Create '+r.service.replace(/s$/,"").toLowerCase()+'</div><button class="bx" data-action="pclose">'+ic('x')+'</button></div>'+tabs+'<div class="bladebody">'+body+'</div><div class="bladefoot">'+foot+'</div>';
 }
 function catalogHtml(){
@@ -745,10 +875,10 @@ function deviceHtml(){
     '<div class="drow"><label>Password (admin):</label><input type="text" value="'+CRED.pw+'" readonly></div></div>'+
     '<div class="dfoot"><button class="btn plain" data-action="wconnect">Connect</button></div></div></div></div>';
   }
-  if(w.stage==="lock") return conn+lockHtml();
-  if(w.stage==="cred") return conn+credHtml();
-  if(w.stage==="welcome") return conn+'<div class="cred"><div class="cred-in"><div class="spinner"></div><div style="color:#fff;font-size:20px">Welcome</div></div></div>';
-  return conn+'<div class="wall">'+deskIcons()+winHtml()+startMenu()+dlgHtml()+'</div><div class="wintask">'+taskbarHtml()+'</div>';
+  if(w.stage==="lock") return '<div class="module">'+conn+lockHtml()+'</div>';
+  if(w.stage==="cred") return '<div class="module">'+conn+credHtml()+'</div>';
+  if(w.stage==="welcome") return '<div class="module">'+conn+'<div class="cred"><div class="cred-in"><div class="spinner"></div><div style="color:#fff;font-size:20px">Welcome</div></div></div></div>';
+  return '<div class="module">'+conn+'<div class="wall">'+deskIcons()+winHtml()+(w.startOpen?startMenu():"")+dlgHtml()+'</div><div class="wintask">'+taskbarHtml()+'</div></div>';
 }
 function lockHtml(){
   return '<div class="lock"><div class="ltime">'+nowClock()+'</div><div class="ldate">'+nowDate()+'</div>'+
@@ -763,28 +893,30 @@ function credHtml(){
 }
 function deskIcons(){
   const w=state.w; const isDc=w.vm==="dc01"; const promoted=!!inv.ad.forest;
-  let ic='<div class="deskicon" style="left:16px;top:14px"><span class="di">🗑</span><span class="dn">Recycle Bin</span></div>';
+  let ic='<div class="deskicon di0"><span class="di">🗑</span><span class="dn">Recycle Bin</span></div>';
   if(isDc){
-    ic+='<div class="deskicon" style="left:16px;top:112px" data-action="openapp" data-arg="sm"><span class="di">⚙️</span><span class="dn">Server Manager</span></div>';
+    ic+='<div class="deskicon di1" data-action="openapp" data-arg="sm"><span class="di">⚙️</span><span class="dn">Server Manager</span></div>';
     if(promoted){
-      ic+='<div class="deskicon" style="left:16px;top:210px" data-action="openapp" data-arg="aduc"><span class="di">👥</span><span class="dn">Active Directory Users and Computers</span></div>';
-      ic+='<div class="deskicon" style="left:16px;top:316px" data-action="openapp" data-arg="gpmc"><span class="di">📋</span><span class="dn">Group Policy Management</span></div>';
+      ic+='<div class="deskicon di2" data-action="openapp" data-arg="aduc"><span class="di">👥</span><span class="dn">Active Directory Users and Computers</span></div>';
+      ic+='<div class="deskicon di3" data-action="openapp" data-arg="gpmc"><span class="di">📋</span><span class="dn">Group Policy Management</span></div>';
     }
   } else {
-    ic+='<div class="deskicon" style="left:16px;top:112px" data-action="openapp" data-arg="entra"><span class="di">🔐</span><span class="dn">Microsoft Entra Connect</span></div>';
+    ic+='<div class="deskicon di1" data-action="openapp" data-arg="entra"><span class="di">🔐</span><span class="dn">Microsoft Entra Connect</span></div>';
   }
   return ic;
 }
 function taskbarHtml(){
   const w=state.w; const isDc=w.vm==="dc01";
   const start=['<button class="startbtn" data-action="start"><span class="winflag"><i></i><i></i><i></i><i></i></span></button>','<span class="tasksearch">Type here to search</span>'];
-  if(w.app) start.push('<button class="startbtn" data-action="closeapp">'+ (w.app==="sm"?"⚙️ Server Manager":w.app==="aduc"?"👥 ADUC":w.app==="gpmc"?"📋 GPMC":"🔐 Entra Connect") +'</button>');
+  const avail=isDc?[["sm","⚙️","Server Manager"]].concat(inv.ad.forest?[["aduc","👥","ADUC"],["gpmc","📋","GPMC"]]:[]):[["entra","🔐","Entra Connect"]];
+  avail.forEach(a=>{ start.push('<button class="startbtn'+(w.app===a[0]?' on':'')+'" data-action="'+(w.app===a[0]?'closeapp':'openapp')+'" data-arg="'+a[0]+'" title="'+a[2]+'">'+a[1]+' <span class="tbl">'+a[2]+'</span></button>'); });
+  if(w.app==="gpedit") start.push('<button class="startbtn on" data-action="closeapp" title="GP Editor">📋 <span class="tbl">GP Editor</span></button>');
   return start.join("")+'<div class="tray">🔊 ENG <span>'+nowClock()+'</span></div>';
 }
 function startMenu(){
   const w=state.w; const isDc=w.vm==="dc01"; const promoted=!!inv.ad.forest;
   const apps=isDc?[["⚙️","Server Manager","sm"]].concat(promoted?[["👥","Active Directory Users and Computers","aduc"],["📋","Group Policy Management","gpmc"]]:[]):[["🔐","Microsoft Entra Connect","entra"]];
-  return '<div class="ctx" style="left:8px;bottom:52px;top:auto;position:fixed">'+apps.map(a=>'<div class="ci" data-action="openapp" data-arg="'+a[2]+'"><span>'+a[0]+'</span> '+a[1]+'</div>').join("")+
+  return '<div class="ctx" style="left:8px;bottom:8px;top:auto;position:absolute">'+apps.map(a=>'<div class="ci" data-action="openapp" data-arg="'+a[2]+'"><span>'+a[0]+'</span> '+a[1]+'</div>').join("")+
   '<div style="height:1px;background:#e0e0e0;margin:3px 0"></div><div class="ci" data-action="close">⏻ Disconnect</div></div>';
 }
 function winHtml(){
@@ -792,7 +924,7 @@ function winHtml(){
   if(!w.app) return "";
   const title={sm:"Server Manager",aduc:"Active Directory Users and Computers",gpmc:"Group Policy Management",gpedit:"Group Policy Management Editor",entra:"Microsoft Entra Connect"}[w.app]||w.app;
   return '<div class="win"><div class="wintitle"><span>'+(w.app==="sm"?"⚙️":w.app==="entra"?"🔐":"📁")+'</span> '+title+
-  '<div class="winbtns"><button class="winbtn">─</button><button class="winbtn close" data-action="closeapp">✕</button></div></div>'+
+  '<div class="winbtns"><button class="winbtn" data-action="closeapp" title="Minimise to desktop">─</button><button class="winbtn close" data-action="closeapp" title="Close">✕</button></div></div>'+
   '<div class="winbody">'+appBody(w.app)+'</div></div>';
 }
 function appBody(app){
@@ -816,7 +948,7 @@ function dlgHtml(){
     const p=d.policy, labels={enabled:"Enable FSLogix Profiles",vhdloc:"VHD locations",ptype:"Profile type",size:"Size in MBs"};
     body='<div class="drow"><label>'+labels[p]+'</label></div>';
     body+='<label class="qopt"><input type="radio" name="pol" value="enabled" data-action="dlgf" data-arg="enabled"'+(f.enabled==="enabled"?" checked":"")+'><span>Enabled</span></label><label class="qopt"><input type="radio" name="pol" value="notcfg" data-action="dlgf" data-arg="enabled"'+(f.enabled==="notcfg"?" checked":"")+'><span>Not Configured</span></label>';
-    if(p==="vhdloc") body+='<div class="drow"><label>VHD locations (UNC):</label><input type="text" data-action="dlgf" data-arg="vhdloc" value="'+esc(f.vhdloc||UNC)+'"></div>';
+    if(p==="vhdloc") body+='<div class="drow"><label>VHD locations (UNC):</label><input type="text" data-action="dlgf" data-arg="vhdloc" value="'+esc(f.vhdloc||labUnc())+'"></div>';
     if(p==="ptype") body+='<div class="drow"><label>Profile type:</label><select data-action="dlgf" data-arg="ptype"><option'+(f.ptype==="profile"?" selected":"")+'>Profile container (roam entire profile)</option><option'+(f.ptype==="odfc"?" selected":"")+'>Office container only</option></select></div>';
     if(p==="size") body+='<div class="drow"><label>Size in MBs:</label><input type="text" data-action="dlgf" data-arg="size" value="'+esc(f.size||"30000")+'"></div>';
   }
@@ -828,17 +960,19 @@ function smBody(){
   const w=state.w; const promoted=!!inv.ad.forest;
   if(w.promoteWiz>=0) return smPromoteWiz();
   if(w.smWiz>=0) return smRolesWiz();
-  let flag="";
-  if(w.smWiz===-1 && !promoted && inv.vm.some(v=>v.name==="dc01")){
-    const roleInstalled = w.roleInstalled;
-    flag = roleInstalled ? '<button class="btn small" data-action="promote-start" style="background:#d39b00">⚠ Promote this server to a domain controller</button>':'';
+  const dnsIp=(inv.vnet[0]||{}).dns||"10.10.1.4";
+  let banner="";
+  if(!promoted && w.roleInstalled){
+    banner='<div class="smflag pulse"><span class="fi">⚠</span><span class="ft">Post-deployment Configuration — Active Directory Domain Services<br>'+
+      '<span style="font-weight:400">Promote this server to a domain controller</span></span>'+
+      '<button class="btn small" data-action="promote-start" style="background:#d39b00">Promote this server to a domain controller</button></div>';
   }
   const body = promoted
-    ? '<div class="wizbody" data-scroll="wiz"><div class="objrow">✓ AD DS — this server is a domain controller for <b>'+inv.ad.forest+'</b></div><div class="objrow">✓ DNS Server — integrated with AD</div><p class="hint">Use Active Directory Users and Computers and Group Policy Management (desktop icons) to continue.</p></div>'
+    ? '<div class="wizbody" data-scroll="wiz"><div class="objrow">✓ AD DS — this server is a domain controller for <b>'+esc(inv.ad.forest)+'</b></div><div class="objrow">✓ DNS Server — integrated with AD</div><p class="hint">Next: use <b>Active Directory Users and Computers</b> and <b>Group Policy Management</b> — both icons are now on the desktop (and in the Start menu).</p></div>'
     : (w.roleInstalled
-      ? '<div class="wizbody" data-scroll="wiz"><div class="objrow">✓ Active Directory Domain Services installed</div><p class="hint">Now promote this server to a domain controller using the yellow ⚠ button above.</p></div>'
-      : '<div class="wizbody" data-scroll="wiz"><p class="hint"><b>1 · Configure this local server</b> — static IP 10.10.1.4, DNS 10.10.1.4, name dc01</p><p class="hint"><b>2 · Add roles and features</b> — install Active Directory Domain Services.</p><button class="btn" data-action="sm-addrole">+ Add roles and features</button></div>');
-  return '<div class="winsub"><span>⚙️ Server Manager • dc01</span><span class="actions">'+flag+'</span></div>'+body;
+      ? '<div class="wizbody" data-scroll="wiz"><div class="objrow">✓ Active Directory Domain Services installed</div><p class="hint">Installation succeeded. Use the <b>⚠ Promote this server to a domain controller</b> button above to finish setting up the forest.</p></div>'
+      : '<div class="wizbody" data-scroll="wiz"><p class="hint"><b>1 · Configure this local server</b> — static IP '+esc(dnsIp)+', name '+esc(w.vm)+'</p><p class="hint"><b>2 · Add roles and features</b> — install Active Directory Domain Services.</p><button class="btn" data-action="sm-addrole">+ Add roles and features</button></div>');
+  return '<div class="winsub"><span>⚙️ Server Manager • '+esc(w.vm)+'</span></div>'+banner+body;
 }
 function smRolesWiz(){
   const w=state.w; const s=w.smWiz;
@@ -846,12 +980,17 @@ function smRolesWiz(){
   let body="", next="Next >", nAction="sm-next";
   if(s===0) body='<p>This wizard helps you install roles, role services, or features. Click Next.</p>';
   else if(s===1) body='<label class="qopt"><input type="radio" checked><span>Role-based or feature-based installation</span></label>';
-  else if(s===2) body='<label class="qopt"><input type="radio" checked><span>dc01.corp.contoso.com · 10.10.1.4</span></label>';
-  else if(s===3) body='<label class="qopt"><input type="checkbox" data-action="rolechk"'+(w.roleChecked?" checked":"")+'><span>☁ Active Directory Domain Services</span></label>'+(w.roleChecked&&!w.featAdded?'<div style="margin-top:10px"><button class="btn small" data-action="featadd">Add Features</button></div>':w.featAdded?'<div class="objrow">✓ Features will be added</div>':"");
+  else if(s===2) body='<label class="qopt"><input type="radio" checked><span>'+esc(state.w.vm)+' · '+esc((inv.vnet[0]||{}).dns||"10.10.1.4")+'</span></label>';
+  else if(s===3) body='<p class="hint">Select the role to install on this server:</p>'+
+      '<label class="qopt" data-action="rolechk"><input type="checkbox"'+(w.roleChecked?" checked":"")+' data-action="rolechk"><span>☁ <b>Active Directory Domain Services</b></span></label>'+
+      '<label class="qopt" data-action="decoyrole"><input type="checkbox"><span>🌐 DNS Server</span></label>'+
+      '<label class="qopt" data-action="decoyrole"><input type="checkbox"><span>📄 File and Storage Services</span></label>'+
+      (w.roleChecked&&!w.featAdded?'<div class="dlgwrap"><div class="dlg"><div class="dtitle">Add features that are required for Active Directory Domain Services?</div><div class="dbody"><p class="hint">The following tools are required to manage this feature, but do not have to be installed on the same server.</p><div class="objrow">▸ Group Policy Management</div><div class="objrow">▸ AD DS Tools (ADUC, ADAC)</div><div class="objrow">▸ DNS Server Tools</div></div><div class="dfoot"><button class="btn plain" data-action="rolechk">Cancel</button><button class="btn" data-action="featadd">Add Features</button></div></div></div>':"")+
+      (w.featAdded?'<div class="objrow">✓ Management tools will be added</div>':"");
   else if(s===4) body='<p>Features required by AD DS (Group Policy Management, DNS) will be installed.</p>';
-  else if(s===5){ body='<label class="qopt"><input type="checkbox" data-action="restart"><span>Restart the destination server automatically if required</span></label>'; next="Install"; nAction="sm-install"; }
-  else if(s===6){ body='<div class="progline"><i style="width:100%"></i></div><div class="objrow">✓ Installation succeeded on dc01.</div><button class="btn" data-action="sm-close">Close</button>'; }
-  return '<div class="winsub">Add Roles and Features Wizard · step '+(s+1)+' of 6 · '+steps[Math.min(s,5)]+'</div>'+
+  else if(s===5){ body='<label class="qopt"><input type="checkbox" data-action="restart"'+(w.autoRestart?" checked":"")+'><span>Restart the destination server automatically if required</span></label>'; next="Install"; nAction="sm-install"; }
+  else if(s===6){ body='<div class="progline"><i style="width:100%"></i></div><div class="objrow">✓ Installation succeeded on '+esc(state.w.vm)+'.</div><button class="btn" data-action="sm-close">Close</button>'; }
+  return '<div class="winsub">Add Roles and Features Wizard · step '+(s+1)+' of '+steps.length+' · '+steps[Math.min(s,steps.length-1)]+'</div>'+
   '<div class="wizbody" data-scroll="wiz">'+body+'</div>'+
   (s<6?'<div class="wizfoot"><button class="wizbtn" data-action="sm-back">'+(s===0?'Cancel':'< Back')+'</button><button class="wizbtn primary" data-action="'+nAction+'">'+next+'</button></div>':'');
 }
@@ -859,11 +998,11 @@ function smPromoteWiz(){
   const w=state.w; const s=w.promoteWiz; const f=state.w.pf||{};
   const steps=["Deployment Configuration","Domain Controller Options","Additional Options","Paths","Review Options","Prerequisites Check","Installation"];
   let body="", next="Next >", nAction="promote-next";
-  if(s===0){ body='<label class="qopt"><input type="radio" name="pmode" checked><span>Add a new forest</span></label><div class="drow"><label>Root domain name:</label><input type="text" data-action="pf" data-arg="forest" placeholder="corp.contoso.com" value="'+esc(f.forest||"")+'"></div>'; }
-  else if(s===1){ body='<div class="drow"><label>Forest functional level:</label><select data-action="pf" data-arg="fl"><option'+(f.fl==="2016"?" selected":"")+'>Windows Server 2016</option><option'+(f.fl==="2012r2"?" selected":"")+'>Windows Server 2012 R2</option></select></div><label class="qopt"><input type="checkbox" checked disabled><span>☑ DNS Server</span></label><div class="drow"><label>DSRM password:</label><input type="password" data-action="pf" data-arg="dsrm" value="'+esc(f.dsrm||"")+'"></div>'; }
-  else if(s===2){ body='<div class="drow"><label>NetBIOS domain name:</label><input type="text" value="CORP" readonly></div>'; }
+  if(s===0){ body='<label class="qopt"><input type="radio" name="pmode" checked><span>Add a new forest</span></label><div class="drow"><label>Root domain name:</label><input type="text" data-action="wpf" data-arg="forest" placeholder="corp.contoso.com" value="'+esc(f.forest||"")+'"></div>'; }
+  else if(s===1){ body='<div class="drow"><label>Forest functional level:</label><select data-action="wpf" data-arg="fl"><option value="2016"'+(f.fl!=="2012r2"?" selected":"")+'>Windows Server 2016</option><option value="2012r2"'+(f.fl==="2012r2"?" selected":"")+'>Windows Server 2012 R2</option></select></div><label class="qopt"><input type="checkbox" checked disabled><span>☑ DNS Server</span></label><div class="drow"><label>DSRM password:</label><input type="password" data-action="wpf" data-arg="dsrm" value="'+esc(f.dsrm||"")+'"></div>'; }
+  else if(s===2){ const nb=(((f.forest||"corp.contoso.com").split(".")[0])||"CORP").toUpperCase(); body='<div class="drow"><label>NetBIOS domain name:</label><input type="text" value="'+esc(nb)+'" readonly></div>'; }
   else if(s===3){ body='<p class="hint">Database/Log folders: C:\\Windows\\NTDS · SYSVOL: C:\\Windows\\SYSVOL</p>'; }
-  else if(s===4){ body='<table class="listtbl"><tr><td>Forest</td><td><b>corp.contoso.com</b></td></tr><tr><td>Functional level</td><td><b>Windows Server 2016</b></td></tr></table>'; }
+  else if(s===4){ body='<table class="listtbl"><tr><td>Forest</td><td><b>'+esc(f.forest||"corp.contoso.com")+'</b></td></tr><tr><td>Functional level</td><td><b>'+(f.fl==="2012r2"?"Windows Server 2012 R2":"Windows Server 2016")+'</b></td></tr></table>'; }
   else if(s===5){ body='<div class="objrow">✓ All prerequisite checks passed. Click Install.</div>'; next="Install"; nAction="promote-install"; }
   else if(s===6){ body='<div class="progline"><i style="width:100%"></i></div><div class="objrow">✓ Configured as a Domain Controller. Restarting…</div>'; }
   return '<div class="winsub">Active Directory Domain Services Configuration Wizard · '+steps[s]+'</div>'+
@@ -875,26 +1014,27 @@ function smPromoteWiz(){
 function aducTree(){
   const w=state.w;
   const nodes=[];
-  nodes.push('<div class="tnode'+(w.adsel==="corp.contoso.com"?" sel":"")+'" data-action="adsel" data-arg="corp.contoso.com">🌐 corp.contoso.com</div>');
+  const DOM=inv.ad.forest||"corp.contoso.com";
+  nodes.push('<div class="tnode'+(w.adsel===DOM?" sel":"")+'" data-action="adsel" data-arg="'+esc(DOM)+'">🌐 '+esc(DOM)+'</div>');
   nodes.push('<div class="tnode tl1">📁 Builtin</div>');
   nodes.push('<div class="tnode tl1">📁 Computers</div>');
   nodes.push('<div class="tnode tl1">📁 Domain Controllers</div>');
   nodes.push('<div class="tnode tl1">📁 Users</div>');
   if(inv.ad.ou){
-    nodes.push('<div class="tnode tl1'+(w.adsel==="AVD"?" sel":"")+'" data-action="adsel" data-arg="AVD">📁 AVD</div>');
+    nodes.push('<div class="tnode tl1'+(w.adsel===inv.ad.ouName?" sel":"")+'" data-action="adsel" data-arg="'+esc(inv.ad.ouName)+'">📁 '+esc(inv.ad.ouName)+'</div>');
     if(inv.ad.group) nodes.push('<div class="tnode tl2">👥 '+inv.ad.groupName+'</div>');
     inv.ad.users.forEach(u=>nodes.push('<div class="tnode tl2">👤 '+u+'</div>'));
   }
   return nodes.join("");
 }
 function aducBody(){
-  const w=state.w; const isAvdSel = w.adsel==="AVD" || w.adsel==="corp.contoso.com";
+  const w=state.w; const OU=inv.ad.ouName||"";
   let actions='<span class="actions">';
-  if(w.adsel==="corp.contoso.com") actions+='<button class="btn small" data-action="new-ou">New ▾ Organizational Unit</button>';
-  if(w.adsel==="AVD") actions+='<button class="btn small" data-action="new-ou">New OU</button><button class="btn small" data-action="new-group">New Group</button><button class="btn small" data-action="new-user">New User</button>';
+  if(w.adsel===(inv.ad.forest||"corp.contoso.com")) actions+='<button class="btn small" data-action="new-ou">New ▾ Organizational Unit</button>';
+  if(OU && w.adsel===OU) actions+='<button class="btn small" data-action="new-group">New Group</button><button class="btn small" data-action="new-user">New User</button>';
   actions+='</span>';
-  const list = w.adsel==="corp.contoso.com" ? (inv.ad.ou?'<tr><td>📁 AVD</td><td>Organizational Unit</td></tr>':'<tr><td colspan="2" style="color:#999">Select the domain, then use New to create the OU “AVD”.</td></tr>')
-    : w.adsel==="AVD" ? ((inv.ad.group?'<tr><td>👥 '+esc(inv.ad.groupName)+'</td><td>Security Group - Global</td></tr>':'')+inv.ad.users.map(u=>'<tr><td>👤 '+u+'</td><td>User</td></tr>').join("")||'<tr><td colspan="2" style="color:#999">Create the group AVD-Users and user avduser01 here.</td></tr>')
+  const list = w.adsel===(inv.ad.forest||"corp.contoso.com") ? (inv.ad.ou?'<tr><td>📁 '+esc(OU)+'</td><td>Organizational Unit</td></tr>':'<tr><td colspan="2" style="color:#999">Select the domain, then use <b>New</b> to create an Organizational Unit.</td></tr>')
+    : (OU && w.adsel===OU) ? ((inv.ad.group?'<tr><td>👥 '+esc(inv.ad.groupName)+'</td><td>Security Group - '+esc(inv.ad.groupScope||"Global")+'</td></tr>':'')+inv.ad.users.map(u=>'<tr><td>👤 '+esc(u)+'</td><td>User</td></tr>').join("")||'<tr><td colspan="2" style="color:#999">Use <b>New Group</b> / <b>New User</b> to populate this OU.</td></tr>')
     : "";
   return '<div class="winsub">👥 Active Directory Users and Computers — '+esc(w.adsel)+actions+'</div>'+
   '<div class="mmccols"><div class="mmctree" data-scroll="tree"><div class="tnode">🌐 Active Directory Users and Computers</div>'+aducTree()+'</div>'+
@@ -904,18 +1044,19 @@ function aducBody(){
 /* GPMC */
 function gpmcBody(){
   const w=state.w;
-  const tree=['<div class="tnode">🌳 Forest: corp.contoso.com</div>','<div class="tnode tl1">🌐 Domains</div>','<div class="tnode tl2">🌐 corp.contoso.com</div>','<div class="tnode tl3">📄 Default Domain Policy</div>','<div class="tnode tl3">📁 Domain Controllers</div>'];
+  const DOM=inv.ad.forest||"corp.contoso.com";
+  const tree=['<div class="tnode">🌳 Forest: '+esc(DOM)+'</div>','<div class="tnode tl1">🌐 Domains</div>','<div class="tnode tl2">🌐 '+esc(DOM)+'</div>','<div class="tnode tl3">📄 Default Domain Policy</div>','<div class="tnode tl3">📁 Domain Controllers</div>'];
   if(inv.ad.ou){
-    tree.push('<div class="tnode tl3'+(w.gpmsel==="AVD"?" sel":"")+'" data-action="gpmsel" data-arg="AVD">📁 AVD</div>');
-    if(w.gpoCreated) tree.push('<div class="tnode tl4'+(w.gpmsel==="FSLogix-Profiles"?" sel":"")+'" data-action="gpmsel" data-arg="FSLogix-Profiles">📄 FSLogix-Profiles</div>');
+    tree.push('<div class="tnode tl3'+(w.gpmsel===inv.ad.ouName?" sel":"")+'" data-action="gpmsel" data-arg="'+esc(inv.ad.ouName)+'">📁 '+esc(inv.ad.ouName)+'</div>');
+    if(w.gpoCreated) tree.push('<div class="tnode tl4'+(w.gpmsel===inv.gpo.name?" sel":"")+'" data-action="gpmsel" data-arg="'+esc(inv.gpo.name)+'">📄 '+esc(inv.gpo.name)+'</div>');
   }
   let actions='<span class="actions">';
-  if(w.gpmsel==="AVD"&&!w.gpoCreated) actions+='<button class="btn small" data-action="new-gpo">Create a GPO in this domain, and Link it here…</button>';
-  if(w.gpmsel==="FSLogix-Profiles") actions+='<button class="btn small" data-action="open-gpedit">Edit…</button>';
+  if(inv.ad.ou && w.gpmsel===inv.ad.ouName && !w.gpoCreated) actions+='<button class="btn small" data-action="new-gpo">Create a GPO in this domain, and Link it here…</button>';
+  if(w.gpoCreated && w.gpmsel===inv.gpo.name) actions+='<button class="btn small" data-action="open-gpedit">Edit…</button>';
   actions+='</span>';
   return '<div class="winsub">📋 Group Policy Management — '+esc(w.gpmsel)+actions+'</div>'+
   '<div class="mmccols"><div class="mmctree" data-scroll="tree">'+tree.join("")+'</div><div class="mmclist" data-scroll="list"><table class="listtbl"><tr><th>Linked GPOs</th><th>Enabled</th></tr>'+
-  (w.gpoCreated?'<tr><td>📄 FSLogix-Profiles</td><td>Yes</td></tr>':'<tr><td colspan="2" style="color:#999">Right-click / select the AVD OU, then create a GPO.</td></tr>')+'</table></div></div>';
+  (w.gpoCreated?'<tr><td>📄 '+esc(inv.gpo.name)+'</td><td>Yes</td></tr>':'<tr><td colspan="2" style="color:#999">Select your OU in the tree, then create and link a GPO.</td></tr>')+'</table></div></div>';
 }
 function gpeditBody(){
   const w=state.w; const gp=w.gp;
@@ -923,10 +1064,10 @@ function gpeditBody(){
     ["VHD locations", gp.vhdloc||"Not configured","vhdloc"],
     ["Profile type", gp.ptype? (gp.ptype==="profile"?"Profile container":"Office container"):"Not configured","ptype"],
     ["Size in MBs", gp.size||"Not configured","size"]];
-  return '<div class="winsub">📋 Group Policy Management Editor — FSLogix › Profile Containers</div>'+
+  return '<div class="winsub">📋 Group Policy Management Editor — '+esc(inv.gpo.name||"GPO")+' › FSLogix › Profile Containers</div>'+
   '<div class="mmccols"><div class="mmctree" data-scroll="tree" style="width:300px"><div class="tnode">🖥 Computer Configuration</div><div class="tnode tl1">Policies</div><div class="tnode tl2">Administrative Templates</div><div class="tnode tl3">FSLogix</div><div class="tnode tl4" style="background:#cce8ff">Profile Containers</div></div>'+
   '<div class="mmclist" data-scroll="list"><table class="listtbl"><tr><th>Setting</th><th>State</th></tr>'+rows.map(r=>'<tr style="cursor:pointer" data-action="gp-open" data-arg="'+r[2]+'"><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join("")+'</table>'+
-  (inv.gpo.fslogix?'<div class="objrow" style="margin:12px">✓ FSLogix profile container fully configured — VHDLocations = '+UNC+'</div>':'<div class="hint" style="padding:10px 14px">Configure all four settings: Enabled, VHD locations, Profile type, Size in MBs.</div>')+'</div></div>';
+  (inv.gpo.fslogix?'<div class="objrow" style="margin:12px">✓ FSLogix profile container fully configured — VHDLocations = '+esc(state.w.gp.vhdloc||labUnc())+'</div>':'<div class="hint" style="padding:10px 14px">Configure all four settings: Enabled, VHD locations, Profile type, Size in MBs.</div>')+'</div></div>';
 }
 
 /* Entra Connect */
@@ -934,10 +1075,10 @@ function entraBody(){
   const w=state.w; const s=w.entStep;
   const steps=["Welcome","Express settings","Connect to Microsoft Entra ID","Connect to AD DS","Configure","Install"];
   let body="", next="Next →", nAction="entra-next";
-  if(s===0) body='<div style="text-align:center;padding:20px"><div style="font-size:40px">🔐</div><h3>Microsoft Entra Connect</h3><p class="hint">Syncs corp.contoso.com users to Microsoft Entra ID.</p></div>';
+  if(s===0) body='<div style="text-align:center;padding:20px"><div style="font-size:40px">🔐</div><h3>Microsoft Entra Connect</h3><p class="hint">Syncs '+esc(inv.ad.forest||"your AD DS forest")+' users to Microsoft Entra ID.</p></div>';
   else if(s===1) body='<label class="qopt"><input type="radio" checked><span><b>Express Settings</b> — recommended</span></label><label class="qopt"><input type="radio"><span>Customize</span></label>';
   else if(s===2) body='<div class="drow"><label>Microsoft Entra ID Global Administrator:</label><input type="text" value="'+CRED.portal+'" readonly></div>';
-  else if(s===3) body='<div class="drow"><label>Connected forest:</label><input type="text" value="corp.contoso.com" readonly></div><div class="drow"><label>Enterprise Administrator:</label><input type="text" value="CORP\\avdadmin" readonly></div>';
+  else if(s===3){ const dn=inv.ad.forest||"corp.contoso.com"; const nb=(dn.split(".")[0]||"CORP").toUpperCase(); body='<div class="drow"><label>Connected forest:</label><input type="text" value="'+esc(dn)+'" readonly></div><div class="drow"><label>Enterprise Administrator:</label><input type="text" value="'+esc(nb)+'\\'+esc(CRED.admin)+'" readonly></div>'; }
   else if(s===4) body='<label class="qopt"><input type="radio" name="sign" checked><span><b>Password Hash Synchronization</b> (recommended)</span></label><label class="qopt"><input type="radio" name="sign"><span>Pass-through Authentication</span></label><label class="qopt"><input type="radio" checked><span><b>Sync scope:</b> Only the AVD OU</span></label>';
   else if(s===5){ body='<table class="listtbl"><tr><td>Mode</td><td>Express</td></tr><tr><td>Sign-in</td><td>Password Hash Sync</td></tr><tr><td>Scope</td><td>AVD OU</td></tr></table>'; next="Install"; nAction="entra-install"; }
   else if(s===6){ body='<div class="progline"><i style="width:100%"></i></div><div class="objrow">✓ Configuration complete — users synced to Microsoft Entra ID.</div>'; }
@@ -950,7 +1091,7 @@ function entraBody(){
 function webHtml(){
   const wb=state.web;
   const bar='<div class="modtop">🌐 Azure Virtual Desktop Web Client<button class="x" data-action="close">✕</button></div>';
-  if(!wb.inSession){
+  if(wb.stage!=="resources"){
     return '<div class="module">'+bar+'<div class="signin-wrap"><div class="signin"><h2>Sign in</h2>'+
     '<div class="pfield"><label>Email</label><input type="text" id="webupn" value="'+esc(wb.upn||CRED.user)+'" data-action="webupn"></div>'+
     '<div class="pfield"><label>Password</label><input type="password" id="webpw" value="'+CRED.pw+'" data-action="webpw"></div>'+
@@ -960,7 +1101,13 @@ function webHtml(){
   }
   return '<div class="module">'+bar+
   '<div style="max-width:720px;margin:24px auto;padding:0 16px"><div class="ptitle">Resources</div><div class="psub">Signed in as '+esc(wb.upn)+'</div>'+
-  '<div class="tile" style="text-align:left;display:flex;gap:12px;align-items:center" data-action="websession"><div class="ti">🖥</div><div><div class="tn">Session Desktop</div><div class="ts">AVD-HP-Pooled</div></div></div>'+
+  (function(){
+    const hp=inv.hostpool[0];
+    if(!hp) return '<div class="psub" style="margin-top:10px">No resources have been published to you yet — create a host pool (Exercise 7).</div>';
+    if(!inv.avd.assigned) return '<div class="psub" style="margin-top:10px">No resources have been published to you yet — assign '+esc(inv.ad.groupName||"your group")+' to the application group (Exercise 8).</div>';
+    if(!inv.avd.registered) return '<div class="psub" style="margin-top:10px">The application group is not registered in a workspace yet (Exercise 8).</div>';
+    return '<div class="tile" style="text-align:left;display:flex;gap:12px;align-items:center" data-action="websession"><div class="ti">🖥</div><div><div class="tn">Session Desktop</div><div class="ts">'+esc(hp.name)+' · '+esc(hp.ws||"workspace")+'</div></div></div>';
+  })()+
   '<button class="btn plain" data-action="close" style="margin-top:14px">Sign out</button></div></div>';
 }
 function sessionHtml(){
@@ -973,26 +1120,50 @@ function sessionHtml(){
 /* ══════════════ STORAGE ══════════════ */
 function storageHtml(){
   const v=state.storage.view;
-  const bar='<div class="modtop">🗄 avdprofilescorp — Azure Files<button class="x" data-action="close">✕</button></div>';
+  const acct=inv.storage[0]; /* whatever the learner actually created */
+  const aname=acct?acct.name:"Storage";
+  const bar='<div class="modtop">🗄 '+esc(aname)+' — Azure Files<button class="x" data-action="close">✕</button></div>';
   let body="";
+  if(!acct){
+    body='<div class="ptitle">No storage account yet</div>'+
+      '<div class="psub">Create a storage account in the Azure portal first (Exercise 6), then come back here.</div>'+
+      '<button class="btn" data-action="module" data-arg="portal" style="margin-top:12px">☁️ Open the Azure portal</button>';
+    return '<div class="module">'+bar+'<div style="max-width:760px;margin:22px auto;padding:0 16px">'+body+'</div></div>';
+  }
+  const perf=(acct.perf||"").indexOf("Premium")===0?"Premium":"Standard";
+  const auth=acct.auth||"None (storage key only)";
   if(v==="overview"){
-    body='<div class="ptitle">avdprofilescorp</div><div class="psub">Storage account · Premium · LRS</div>'+
+    body='<div class="ptitle">'+esc(acct.name)+'</div><div class="psub">Storage account · '+esc(perf)+' · LRS</div>'+
     '<table class="ptable"><tr><th>Setting</th><th>Value</th></tr>'+
-    '<tr><td>Performance</td><td>Premium</td></tr>'+
-    '<tr><td>Identity-based access</td><td>Active Directory (AD DS)</td></tr>'+
-    '<tr><td>File shares</td><td>1</td></tr></table>'+
+    '<tr><td>Performance</td><td>'+esc(perf)+'</td></tr>'+
+    '<tr><td>Identity-based access</td><td>'+esc(auth)+'</td></tr>'+
+    '<tr><td>File shares</td><td>'+inv.shares.length+'</td></tr></table>'+
+    (auth.indexOf("Active Directory")!==0?'<div class="hint" style="margin-top:10px;color:#8a6d00">⚠ FSLogix needs <b>Active Directory (AD DS)</b> identity-based access to mount the share with domain credentials.</div>':'')+
     '<button class="btn" data-action="storage-view" data-arg="shares" style="margin-top:12px">📁 File shares</button>';
   } else if(v==="shares"){
-    body='<div class="ptitle">File shares</div><div class="psub">avdprofilescorp</div>'+
+    body='<div class="ptitle">File shares</div><div class="psub">'+esc(acct.name)+'</div>'+
+    '<div style="margin-bottom:10px"><button class="btn" data-action="share-new">+ File share</button></div>'+
     '<table class="ptable"><tr><th>Name</th><th>Quota</th><th>Access</th></tr>'+
-    (inv.storage.some(s=>s.name==="avdprofilescorp")?'<tr style="cursor:pointer" data-action="storage-view" data-arg="browse"><td>📁 fslogix</td><td>100 GiB</td><td>AVD-Users: Modify</td></tr>':'<tr><td colspan="3" style="color:#999">Create the storage account avdprofilescorp in the portal first.</td></tr>')+'</table>';
+    (inv.shares.length?inv.shares.map(sh=>'<tr style="cursor:pointer" data-action="share-open" data-arg="'+esc(sh.name)+'"><td>📁 '+esc(sh.name)+'</td><td>'+esc(sh.quota)+' GiB</td><td>'+(inv.ad.group?esc(inv.ad.groupName)+': Modify':'Storage key only')+'</td></tr>').join("")
+      :'<tr><td colspan="3" style="color:#999">No file shares yet — click <b>+ File share</b> to create one.</td></tr>')+'</table>';
   } else {
-    const files = inv.session.vhdx ? ['<tr><td>💾 Profile_S-1-5-21-3000000000-1000000000-5000000000-500.vhdx</td><td>FSLogix profile container · avduser01</td><td>30 GB</td></tr>'] : [];
-    body='<div class="ptitle">fslogix — browse</div><div class="psub">avdprofilescorp / fslogix</div>'+
+    const sh=inv.shares.find(x=>x.name===state.storage.share)||inv.shares[0];
+    if(!sh) return '<div class="module">'+bar+'<div style="max-width:760px;margin:22px auto;padding:0 16px"><div class="psub">That share no longer exists.</div><button class="btn plain" data-action="storage-view" data-arg="shares">← Back</button></div></div>';
+    const here = inv.session.vhdx && norm(inv.session.vhdxShare)===norm(sh.name);
+    const files = here ? ['<tr><td>💾 Profile_S-1-5-21-3000000000-1000000000-5000000000-500.vhdx</td><td>FSLogix profile container · '+esc((inv.ad.users[0]||"avduser01"))+'</td><td>30 GB</td></tr>'] : [];
+    body='<div class="ptitle">'+esc(sh.name)+' — browse</div><div class="psub">'+esc(acct.name)+' / '+esc(sh.name)+'</div>'+
     '<table class="ptable"><tr><th>Name</th><th>Type</th><th>Size</th></tr>'+(files.length?files.join(""):'<tr><td colspan="3" style="color:#999">Share is empty — profiles appear here after a user signs out of AVD.</td></tr>')+'</table>'+
     '<button class="btn plain" data-action="storage-view" data-arg="shares" style="margin-top:10px">← Back</button>';
   }
-  return '<div class="module">'+bar+'<div style="max-width:760px;margin:22px auto;padding:0 16px">'+body+'</div></div>';
+  return '<div class="module">'+bar+'<div style="max-width:760px;margin:22px auto;padding:0 16px">'+body+'</div>'+shareDlgHtml()+'</div>';
+}
+function shareDlgHtml(){
+  const f=state.storage.dlg; if(!f) return "";
+  return '<div class="dlgwrap"><div class="dlg"><div class="dtitle">📁 New file share</div><div class="dbody">'+
+    '<div class="drow"><label>Name:</label><input type="text" data-action="sharef" data-arg="name" value="'+esc(f.name||"")+'"></div>'+
+    '<div class="drow"><label>Quota (GiB):</label><input type="text" data-action="sharef" data-arg="quota" value="'+esc(f.quota||"100")+'"></div>'+
+    '<p class="hint">FSLogix expects a share the session hosts can reach over SMB. The lab guide uses <b>fslogix</b>.</p>'+
+    '</div><div class="dfoot"><button class="btn plain" data-action="share-cancel">Cancel</button><button class="btn" data-action="share-create">Create</button></div></div></div>';
 }
 
 /* ══════════════ HUB ══════════════ */
@@ -1003,7 +1174,7 @@ function hubHtml(){
     {k:"dc01", i:"🖥", n:"dc01", d:"Windows Server 2022 — domain controller", st:(promoted?"corp.contoso.com ✓":"not promoted")},
     {k:"adsync01", i:"🖥", n:"adsync01", d:"Windows Server 2022 — Entra Connect sync server", st:(inv.ad.sync?"synced ✓":"not synced")},
     {k:"web", i:"🌐", n:"AVD web client", d:"client.wvd.microsoft.com — user session", st:(inv.session.vhdx?"validated ✓":"not tested")},
-    {k:"storage", i:"🗄", n:"Storage account", d:"avdprofilescorp — Azure Files share fslogix", st:(inv.storage.length?"created ✓":"not created")}
+    {k:"storage", i:"🗄", n:"Storage account", d:(inv.storage[0]?inv.storage[0].name:"avdprofilescorp")+" — Azure Files", st:(inv.shares.length?inv.shares.length+" share"+(inv.shares.length>1?"s":"")+" ✓":inv.storage.length?"account created":"not created")}
   ];
   return '<div class="hub"><div class="hub-head"><div class="hlogo">🖥️</div><h1>Azure Virtual Desktop — Lab Environment</h1>'+
   '<p>Access the lab devices like real systems: sign in to the Azure portal, RDP into the servers, and use the consoles. Open the <b>📖 Lab Guide</b> (bottom-right) and follow the 10 exercises on these devices.</p></div>'+
@@ -1030,9 +1201,9 @@ const scrollMem = {};
 function moduleKey(){
   const m = state.module;
   if(m==="portal") return "portal";
-  if(m==="dc01"||m==="adsync01") return "win:"+m+":"+(state.web.inSession?"sess":"dev");
-  if(m==="web") return "web:"+(state.web.inSession?"sess":"signin");
-  if(m==="storage") return "storage:"+state.storage.view;
+  if(m==="dc01"||m==="adsync01") return "win:"+m+":dev";
+  if(m==="web") return "web:"+state.web.stage;
+  if(m==="storage") return "storage:"+state.storage.view+":"+state.storage.share;
   return "hub";
 }
 function winTop(){
@@ -1051,7 +1222,7 @@ function restoreScroll(){
 }
 /* ══════════════ LAB GUIDE (embedded) ══════════════ */
 const GUIDE = {
-  intro:'Build a hybrid Azure Virtual Desktop environment end to end. Each exercise below tells you <b>which device to access</b> and <b>what to do on it</b> — then how to verify it worked. Open this guide anytime with the 📖 button.',
+  intro:'Build a hybrid Azure Virtual Desktop environment end to end. Each exercise tells you <b>which device to access</b> and <b>what to do on it</b>, then how to verify it worked.<br><br><b>The names below are suggestions, not passwords.</b> This simulator validates real Azure and Windows rules — naming conventions, CIDR formats, password complexity, uniqueness — so you can name your resources whatever you like, as long as they are valid and you stay consistent. Later steps follow whatever you actually built.',
   creds:[
     ["Portal sign-in","admin@contoso.onmicrosoft.com"],
     ["Server admin (dc01 / adsync01)","avdadmin / P@ssw0rd1234!"],
@@ -1064,66 +1235,67 @@ const GUIDE = {
       "Click <code>+ Create</code>.",
       "Fill <b>Resource group name</b>: <code>rg-avd</code> · <b>Region</b>: <code>East US</code>.",
       "Click <code>Review + create</code> → <code>Create</code>.",
-      "Wait for “Your deployment is complete”."
-    ],verify:"<b>rg-avd</b> appears under Resource groups and All resources."},
+      "Wait for “Your deployment is complete”.",
+      "<i>Any valid name works — the region is yours to choose too.</i>"
+    ],verify:"Your resource group appears under Resource groups and All resources."},
     {n:2,title:"Create the virtual network",dev:"☁️ Azure portal",mod:"portal",steps:[
       "Search and open <code>Virtual networks</code> → <code>+ Create</code>.",
       "Fill <b>Name</b>: <code>avd-vnet</code> · <b>Region</b>: <code>East US</code>.",
       "<b>Address space</b>: <code>10.10.0.0/16</code>.",
       "Subnets: <code>10.10.1.0/24</code> (snet-adds), <code>10.10.2.0/24</code> (snet-session), <code>10.10.3.0/24</code> (snet-files).",
       "<b>DNS servers</b>: <code>10.10.1.4</code> → <code>Review + create</code> → <code>Create</code>."
-    ],verify:"<b>avd-vnet</b> shows 3 subnets and DNS <code>10.10.1.4</code>."},
-    {n:3,title:"Deploy & promote the domain controller",dev:"☁️ portal → 🖥 dc01",mod:"portal",steps:[
+    ],verify:"Your virtual network appears with its address space and custom DNS server."},
+    {n:3,title:"Deploy & promote the domain controller",dev:"☁️ portal → 🖥 dc01",mod:"portal",mods:[["portal","portal"],["dc01","dc01"]],steps:[
       "Open <code>Virtual machines</code> → <code>+ Create</code>: name <code>dc01</code>, image <b>Windows Server 2022 Datacenter</b>, size <b>B2ms</b>, admin <code>avdadmin</code> + a password, join domain <code>corp.contoso.com</code> → <code>Create</code>.",
       "Go back to the lab home and <b>RDP</b> into <code>dc01</code>, sign in as <code>avdadmin</code>.",
       "Open <b>Server Manager</b> → <code>+ Add roles and features</code> → tick <b>Active Directory Domain Services</b> → <code>Add Features</code> → <code>Install</code>.",
       "Click the yellow ⚠ flag → <b>Promote this server to a domain controller</b>.",
       "<b>Add a new forest</b> → <code>corp.contoso.com</code> → level <b>Windows Server 2016</b> → keep <b>DNS Server</b> → <code>Install</code>."
-    ],verify:"dc01 shows “domain controller for corp.contoso.com” and the ADUC + GPMC icons appear on its desktop."},
+    ],verify:"Server Manager reports the server is a domain controller for your forest, and the ADUC + GPMC icons appear on its desktop."},
     {n:4,title:"Create the OU, group and users",dev:"🖥 dc01",mod:"dc01",steps:[
       "RDP into <code>dc01</code> and sign in.",
       "Open <b>Active Directory Users and Computers</b>.",
       "Select the domain → <code>New Organizational Unit</code> → <code>AVD</code>.",
       "Select <b>AVD</b> → <code>New Group</code> → <code>AVD-Users</code> (Global, Security).",
       "Select <b>AVD</b> → <code>New User</code> → <code>avduser01</code> (UPN <code>avduser01@corp.contoso.com</code>)."
-    ],verify:"The AVD OU contains <b>AVD-Users</b> and <b>avduser01</b>."},
+    ],verify:"Your OU contains the security group and user you created."},
     {n:5,title:"Sync users with Microsoft Entra Connect",dev:"🖥 adsync01",mod:"adsync01",steps:[
       "From the lab home, <b>RDP</b> into <code>adsync01</code> and sign in.",
       "Open <b>Microsoft Entra Connect</b> → <b>Express settings</b>.",
       "Sign in as <b>Entra ID Global Administrator</b> (<code>admin@contoso.onmicrosoft.com</code>).",
       "Enter an <b>AD DS Enterprise Administrator</b> for corp.contoso.com.",
       "Keep <b>Password Hash Synchronization</b> → scope to the <b>AVD OU</b> → <code>Install</code>."
-    ],verify:"Sync completes — <code>avduser01</code> is now in Microsoft Entra ID."},
+    ],verify:"Sync completes — your AD user is now in Microsoft Entra ID (check Entra ID in the portal)."},
     {n:6,title:"Storage account + FSLogix share",dev:"☁️ Azure portal",mod:"portal",steps:[
       "Open <code>Storage accounts</code> → <code>+ Create</code>.",
       "<b>Name</b>: <code>avdprofilescorp</code> · <b>Performance</b>: <code>Premium</code> · <b>Identity-based access</b>: <code>Active Directory (AD DS)</code> → <code>Create</code>.",
-      "Open the account → <b>File shares</b> → add <code>fslogix</code>."
-    ],verify:"The <b>fslogix</b> share exists with AD DS authentication."},
+      "Open the <b>Storage account</b> module → <b>File shares</b> → <code>+ File share</code> → name it (the guide uses <code>fslogix</code>)."
+    ],verify:"Your storage account exists with AD DS identity-based access, and your file share is listed."},
     {n:7,title:"Create the host pool & session hosts",dev:"☁️ Azure portal",mod:"portal",steps:[
       "Open <b>Azure Virtual Desktop</b> → <code>+ Create</code> (Host pool).",
       "<b>Name</b>: <code>AVD-HP-Pooled</code> · <b>Type</b>: <code>Pooled</code> · <b>Image</b>: <code>Windows 11 Enterprise multi-session</code>.",
       "<b>Session hosts</b>: 2 · <b>Domain join</b>: <code>corp.contoso.com</code>.",
       "<b>Workspace</b>: new <code>AVD-Workspace</code> → <code>Review + create</code> → <code>Create</code>."
-    ],verify:"<b>AVD-HP-Pooled</b> appears with 2 session hosts and workspace <b>AVD-Workspace</b>."},
+    ],verify:"Your host pool appears with its session hosts and workspace."},
     {n:8,title:"Assign users & publish the workspace",dev:"☁️ Azure portal",mod:"portal",steps:[
       "Open <b>Azure Virtual Desktop</b> → the host pool's <b>Application group</b>.",
       "<b>Assignments → + Add</b> → select <code>AVD-Users</code> → <code>Select</code>.",
       "Open <b>Workspaces</b> → <code>AVD-Workspace</code> → register the <b>Desktop application group</b>."
-    ],verify:"The Desktop app group is assigned to <b>AVD-Users</b> and registered in the workspace."},
+    ],verify:"The Desktop app group shows your group assigned and your workspace registered."},
     {n:9,title:"Configure FSLogix profiles (Group Policy)",dev:"🖥 dc01",mod:"dc01",steps:[
       "RDP into <code>dc01</code> → open <b>Group Policy Management</b>.",
       "Select the <b>AVD</b> OU → <b>Create a GPO in this domain, and Link it here…</b> → <code>FSLogix-Profiles</code>.",
       "Select the GPO → <b>Edit…</b> → <b>FSLogix → Profile Containers</b>.",
-      "Set <b>Enabled</b> → Enabled · <b>VHD locations</b> → <code>{{UNC}}</code> · <b>Profile type</b> → <code>Profile container</code> · <b>Size in MBs</b> → <code>30000</code>."
-    ],verify:"All four settings show configured values (Enabled / UNC path / Profile container / 30000)."},
-    {n:10,title:"Connect & validate the profile container",dev:"🌐 web client → 🗄 storage",mod:"web",steps:[
+      "Set <b>Enabled</b> → Enabled · <b>VHD locations</b> → the UNC path of <i>your</i> share (the dialog pre-fills it for you) · <b>Profile type</b> → <code>Profile container</code> · <b>Size in MBs</b> → e.g. <code>30000</code>."
+    ],verify:"All four settings are configured, and the UNC path matches the storage account and share you actually created."},
+    {n:10,title:"Connect & validate the profile container",dev:"🌐 web client → 🗄 storage",mod:"web",mods:[["web","web client"],["storage","storage"]],steps:[
       "In the portal, open <b>AVD-HP-Pooled</b> → <b>Launch web client</b>.",
       "Sign in as <code>avduser01@corp.contoso.com</code> → open <b>Session Desktop</b>.",
       "Sign out of the session.",
       "Open the <b>Storage account</b> module → <b>File shares → fslogix → Browse</b>."
-    ],verify:"A <b>Profile_&lt;SID&gt;.vhdx</b> file now exists in the share — FSLogix is roaming profiles to Azure Files."}
+    ],verify:"A <b>Profile_&lt;SID&gt;.vhdx</b> file now exists in your share. If FSLogix is misconfigured the profile stays local and no VHDX appears — that is the real behaviour."}
   ],
-  checklist:["rg-avd created (East US)","avd-vnet with 3 subnets and DNS 10.10.1.4","dc01 deployed and promoted to corp.contoso.com","OU AVD · group AVD-Users · user avduser01","Entra Connect synced (PHS, AVD OU)","avdprofilescorp (Premium, AD DS auth) with share fslogix","AVD-HP-Pooled with 2 session hosts","Desktop app group → AVD-Users, registered in AVD-Workspace","FSLogix GPO configured (Enabled / VHD locations / Profile container / 30000 MB)","Profile VHDX visible in fslogix after sign-out"],
+  checklist:["Resource group created","Virtual network with subnets and custom DNS","Domain controller deployed and promoted to your forest","OU · security group · user created in AD","Entra Connect synced (PHS)","Storage account (Premium, AD DS auth) with a file share","Host pool with session hosts","Desktop app group assigned to your group and registered in your workspace","FSLogix GPO configured and pointing at your share","Profile VHDX visible in the share after sign-out"],
   troubleshooting:[
     ["Session host stuck “Unavailable”","Agent not registered / DNS can't reach DC","VNet DNS must be 10.10.1.4; re-register the agent"],
     ["Profile falls back to local (no VHDX)","FSLogix disabled, wrong VHDLocations, or SMB 445 blocked","Verify the GPO; allow 445 to the storage account"],
@@ -1141,19 +1313,19 @@ const GUIDE = {
   ]
 };
 function guideHtml(){
-  if(!state.guideOpen) return '<button class="guidefab" data-action="guide">📖 Lab Guide</button>';
+  if(!state.guideOpen) return '<button class="guidefab" data-action="guide">📖<span class="gtxt"> Lab Guide</span></button>';
   let ex='';
   GUIDE.exercises.forEach(e=>{
     ex+='<details'+(e.n===1?' open':'')+'><summary><span class="gnum">'+e.n+'</span><span>'+e.title+'</span><span class="gdev">'+e.dev+'</span></summary>'+
       '<div class="gex"><ol>'+e.steps.map(s=>'<li>'+s.replace(/\{\{UNC\}\}/g, esc(UNC))+'</li>').join('')+'</ol>'+
       '<div class="verify">✅ <b>Verify:</b> '+e.verify+'</div>'+
-      '<div class="open"><button class="btn small" data-action="guidedev" data-arg="'+e.mod+'">Open '+e.dev.split(' ').pop()+' →</button></div></div></details>';
+      '<div class="open">'+(e.mods||[[e.mod,e.dev.split(' ').pop()]]).map(m=>'<button class="btn small" data-action="guidedev" data-arg="'+m[0]+'">Open '+m[1]+' →</button>').join(' ')+'</div></div></details>';
   });
   const creds='<table class="gcred">'+GUIDE.creds.map(c=>'<tr><td>'+c[0]+'</td><td><code>'+c[1]+'</code></td></tr>').join('')+'</table>';
   const check='<ul class="gcheck">'+GUIDE.checklist.map(c=>'<li>'+c+'</li>').join('')+'</ul>';
   const ts='<table class="gtbl"><tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>'+GUIDE.troubleshooting.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>').join('')+'</table>';
   const prod='<table class="gtbl"><tr><th>Item</th><th>Where</th></tr>'+GUIDE.production.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('')+'</table>';
-  return '<button class="guidefab" data-action="guide">📖 Lab Guide</button>'+
+  return '<button class="guidefab" data-action="guide">📖<span class="gtxt"> Lab Guide</span></button>'+
     '<div class="guideback" data-action="guide"></div>'+
     '<div class="guidepanel"><div class="guidehead"><div><h2>Lab Guide</h2><div class="sub">Hybrid Azure Virtual Desktop · FSLogix</div></div><button data-action="guide">✕</button></div>'+
     '<div class="guidebody" data-scroll="guidebody">'+
@@ -1177,8 +1349,8 @@ function render(){
 
   let html="";
   if(state.module==="portal") html=portalHtml();
-  else if(state.module==="dc01"||state.module==="adsync01") html= state.web.inSession? sessionHtml(): deviceHtml();
-  else if(state.module==="web") html= state.web.inSession? sessionHtml(): webHtml();
+  else if(state.module==="dc01"||state.module==="adsync01") html= deviceHtml();
+  else if(state.module==="web") html= (state.web.stage==="session")? sessionHtml(): webHtml();
   else if(state.module==="storage") html=storageHtml();
   else html=hubHtml();
   app.innerHTML=html;
@@ -1204,7 +1376,7 @@ function render(){
 function doAction(a,arg){
   const w=state.w;
   /* generic */
-  if(a==="close"){ state.module=null; state.web.inSession=false; render(); return; }
+  if(a==="close"){ state.module=null; state.web.stage="signin"; render(); return; }
   if(a==="module"){ if(arg==="dc01"||arg==="adsync01"){ resetDev(arg); } else if(arg==="portal"){ state.p.email=CRED.portal; } state.module=arg; render(); return; }
   if(a==="resetlab"){ resetAll(); return; }
   if(a==="guide"){ state.guideOpen=!state.guideOpen; render(); return; }
@@ -1215,10 +1387,10 @@ function doAction(a,arg){
   if(a==="pnav"){ state.p.service=arg; state.p.view = (arg==="home"||arg==="all"||arg==="allservices"||arg==="avd"||arg==="entra"||arg==="sub")?arg:"service"; state.p.blade=null; state.p.searchOpen=false; state.p.notifOpen=false; render(); return; }
   if(a==="popen"){ const parts=arg.split(":"); state.p.blade={type:"detail", svc:parts[1], name:parts.slice(2).join(":")}; state.p.searchOpen=false; render(); return; }
   if(a==="pclose"){ state.p.blade=null; render(); return; }
-  if(a==="pcreate"){ state.p.blade={type:"create", res:arg}; state.p.tab=0; state.p.form[arg]={}; render(); return; }
+  if(a==="pcreate"){ state.p.blade={type:"create", res:arg}; state.p.tab=0; pformInit(arg); render(); return; }
   if(a==="pcatalog"){ state.p.blade={type:"catalog"}; render(); return; }
   if(a==="pcat"){ state.p.catalog=parseInt(arg,10); render(); return; }
-  if(a==="pcatalogpick"){ if(arg==="decoy"){ toast("This service is not part of the lab"); return; } state.p.blade={type:"create", res:arg}; state.p.tab=0; state.p.form[arg]={}; render(); return; }
+  if(a==="pcatalogpick"){ if(arg==="decoy"){ toast("This service is not part of the lab"); return; } state.p.blade={type:"create", res:arg}; state.p.tab=0; pformInit(arg); render(); return; }
   if(a==="ptab"){ state.p.tab=parseInt(arg,10); render(); return; }
   if(a==="preview"){ state.p.tab=2; render(); return; }
   if(a==="prail"){ state.p.railCollapsed=!state.p.railCollapsed; render(); return; }
@@ -1228,11 +1400,11 @@ function doAction(a,arg){
   if(a==="pdir"){ toast("Directory: contoso.onmicrosoft.com · Subscription: AVD Lab Subscription"); return; }
   if(a==="decoyshell"){ toast("Shown for realism — not part of the lab flow"); return; }
   if(a==="pdelete"){ toast("Delete is disabled in this lab"); return; }
+  if(a==="wpf"){ const el=document.querySelector('[data-action="wpf"][data-arg="'+arg+'"]'); if(el){ state.w.pf=state.w.pf||{}; state.w.pf[arg]=el.value; } return; }
   if(a==="pf"){ const p=arg.split(":"); const res=p[0], id=p.slice(1).join(":"); const el=document.querySelector('[data-action="pf"][data-arg="'+arg+'"]'); let v; if(el){ if(el.type==="checkbox") v=el.checked; else if(el.type==="radio"){ v=el.value; } else v=el.value; } pform(res)[id]=v; return; }
-  if(a==="pfradio"){ return; }
   if(a==="pcreate2"){
     const res=arg; const errs=pError(res);
-    if(errs.length){ toast(errs[0]); return; }
+    if(errs.length){ state.p.tab=0; render(); toast(errs[0]); return; }
     const name=pform(res).name;
     if(res==="rg") inv.rg.push({name:name, region:pform(res).region});
     if(res==="vnet") inv.vnet.push({name:name, space:pform(res).space});
@@ -1254,33 +1426,42 @@ function doAction(a,arg){
     return;
   }
   if(a==="pgotores"){ const p=arg.split(":"); const kind=p[0]; const name=p.slice(1).join(":"); state.p.deploy={active:false,step:0,name:"",res:"",resName:"",msg:""}; state.p.blade={type:"detail", svc:kind, name:name}; render(); return; }
+  if(a==="avd-assign"){
+    if(!inv.ad.group){ toast("Create a security group in Active Directory first (Exercise 4)"); return; }
+    if(!inv.ad.sync){ toast("Sync the group to Microsoft Entra ID first (Exercise 5)"); return; }
+    inv.avd.assigned=true; notifyPortal('check','Assignment added',inv.ad.groupName+' → Desktop application group'); render(); toast(inv.ad.groupName+" assigned to the Desktop application group"); return; }
+  if(a==="avd-register"){
+    const wsn=(inv.hostpool[0]||{}).ws||"the workspace"; inv.avd.registered=true; notifyPortal('check','Workspace updated','Desktop application group registered in '+wsn); render(); toast("Application group registered in "+wsn); return; }
   if(a==="webopen"){ state.module="web"; render(); return; }
   /* windows device */
   if(a==="wconnect"){ w.stage="lock"; render(); return; }
   if(a==="lockbtn"){ w.stage="cred"; w.fail=false; render(); return; }
   if(a==="pwhint"){ winToast("Lab password: "+CRED.pw); return; }
-  if(a==="signin"){ const pw=document.getElementById("loginpw"); const v=pw?pw.value:""; if(v===CRED.pw){ w.stage="welcome"; render(); setTimeout(()=>{ w.stage="desktop"; w.app = w.vm==="adsync01"?"entra":"sm"; render(); },900); } else { w.fail=true; render(); } return; }
-  if(a==="start"){ winToast("Start menu"); return; }
-  if(a==="openapp"){ w.app=arg; render(); return; }
+  if(a==="signin"){ const pw=document.getElementById("loginpw"); const v=pw?pw.value:""; if(v===CRED.pw){ w.stage="welcome"; render(); setTimeout(()=>{ w.stage="desktop"; if(!w.app) w.app = w.vm==="adsync01"?"entra":"sm"; render(); },900); } else { w.fail=true; render(); } return; }
+  if(a==="start"){ w.startOpen=!w.startOpen; render(); return; }
+  if(a==="openapp"){ w.app=arg; w.startOpen=false; render(); return; }
   if(a==="closeapp"){ w.app=null; render(); return; }
   /* server manager */
   if(a==="sm-addrole"){ w.smWiz=0; render(); return; }
-  if(a==="rolechk"){ w.roleChecked=!w.roleChecked; render(); return; }
+  if(a==="rolechk"){ w.roleChecked=!w.roleChecked; if(!w.roleChecked) w.featAdded=false; render(); return; }
   if(a==="featadd"){ w.featAdded=true; render(); return; }
-  if(a==="restart"){ render(); return; }
+  if(a==="restart"){ w.autoRestart=!w.autoRestart; render(); return; }
   if(a==="sm-back"){ w.smWiz=Math.max(-1,w.smWiz-1); render(); return; }
-  if(a==="sm-next"){ if(w.smWiz===3 && (!w.roleChecked||!w.featAdded)){ winToast("Select Active Directory Domain Services and Add Features"); return; } w.smWiz++; render(); return; }
+  if(a==="sm-next"){
+    if(w.smWiz===3 && !w.roleChecked){ winToast("Tick “Active Directory Domain Services” to continue"); return; }
+    if(w.smWiz===3 && !w.featAdded){ winToast("Click “Add Features” in the dialog to continue"); return; }
+    w.smWiz++; render(); return; }
+  if(a==="decoyrole"){ winToast("Only Active Directory Domain Services is needed for this lab"); return; }
   if(a==="sm-install"){ w.smWiz++; render(); return; }
   if(a==="sm-close"){ w.smWiz=-1; w.roleInstalled=true; render(); return; }
-  if(a==="promote-start"){ w.promoteWiz=0; w.pf={}; render(); return; }
-  if(a==="pf"){ return; } /* handled above */
+  if(a==="promote-start"){ w.promoteWiz=0; w.pf={fl:"2016"}; render(); return; }
   if(a==="promote-back"){ w.promoteWiz=Math.max(-1,w.promoteWiz-1); render(); return; }
   if(a==="promote-next"){
-    if(w.promoteWiz===0 && !norm(w.pf.forest).includes("corp.contoso.com")){ winToast("Root domain name must be corp.contoso.com"); return; }
-    if(w.promoteWiz===1 && (w.pf.fl!=="2016"||(w.pf.dsrm||"").length<6)){ winToast("Set functional level 2016 and a DSRM password (min 6 chars)"); return; }
+    if(w.promoteWiz===0 && !isFqdn((w.pf||{}).forest)){ winToast("Enter a root domain name, e.g. corp.contoso.com"); return; }
+    if(w.promoteWiz===1 && ((w.pf||{}).dsrm||"").length<8){ winToast("Set a DSRM password (min 8 characters)"); return; }
     w.promoteWiz++; render(); return;
   }
-  if(a==="promote-install"){ w.promoteWiz++; render(); setTimeout(()=>{ w.promoteWiz=-1; w.app=null; inv.ad.forest="corp.contoso.com"; winToast("dc01 is now a domain controller for corp.contoso.com"); render(); },1200); return; }
+  if(a==="promote-install"){ w.promoteWiz++; render(); setTimeout(()=>{ const dn=((w.pf||{}).forest||"corp.contoso.com").trim().toLowerCase(); w.promoteWiz=-1; w.app=null; inv.ad.forest=dn; w.adsel=dn; w.gpmsel=dn; winToast(w.vm+" is now a domain controller for "+dn); render(); },1200); return; }
   /* ADUC */
   if(a==="adsel"){ w.adsel=arg; render(); return; }
   if(a==="new-ou"){ w.dlg={kind:"ou", title:"New Object - Organizational Unit", f:{name:"AVD"}}; render(); return; }
@@ -1288,49 +1469,114 @@ function doAction(a,arg){
   if(a==="new-user"){ w.dlg={kind:"user", title:"New Object - User", f:{first:"Alex",last:"Varma",sam:"avduser01",upn:"avduser01@corp.contoso.com"}}; render(); return; }
   if(a==="dlgf"){ const el=document.querySelector('[data-action="dlgf"][data-arg="'+arg+'"]'); if(el){ if(el.type==="radio"){ w.dlg.f.enabled=el.value; } else w.dlg.f[arg]=el.value; } return; }
   if(a==="dlgcancel"){ w.dlg=null; render(); return; }
-  if(a==="dlg-ou"){ if(norm(w.dlg.f.name).includes("avd")){ inv.ad.ou=true; inv.ad.ouName=w.dlg.f.name; w.dlg=null; render(); winToast("OU created"); } else winToast('Name the OU "AVD"'); return; }
-  if(a==="dlg-group"){ if(norm(w.dlg.f.name).includes("avd-users")){ inv.ad.group=true; inv.ad.groupName=w.dlg.f.name; w.dlg=null; render(); winToast("Group created"); } else winToast('Name the group "AVD-Users"'); return; }
-  if(a==="dlg-user"){ if(norm(w.dlg.f.sam).includes("avduser01")){ if(inv.ad.users.indexOf("avduser01")<0) inv.ad.users.push("avduser01"); w.dlg=null; render(); winToast("User created"); } else winToast('SamAccountName should be "avduser01"'); return; }
+  if(a==="dlg-ou"){ const nm=(w.dlg.f.name||"").trim();
+    if(!/^[^\\/:*?"<>|]{1,64}$/.test(nm)){ winToast("Enter a valid OU name"); return; }
+    inv.ad.ou=true; inv.ad.ouName=nm; w.adsel=nm; w.dlg=null; render(); winToast("OU '"+nm+"' created"); return; }
+  if(a==="dlg-group"){ const nm=(w.dlg.f.name||"").trim();
+    if(!/^[^\\/:*?"<>|]{1,64}$/.test(nm)){ winToast("Enter a valid group name"); return; }
+    inv.ad.group=true; inv.ad.groupName=nm; inv.ad.groupScope=w.dlg.f.scope||"Global"; w.dlg=null; render(); winToast("Group '"+nm+"' created"); return; }
+  if(a==="dlg-user"){ const sam=(w.dlg.f.sam||"").trim(); const upn=(w.dlg.f.upn||"").trim();
+    if(!/^[A-Za-z0-9._-]{1,20}$/.test(sam)){ winToast("SamAccountName: up to 20 chars, letters/numbers/._-"); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(upn)){ winToast("Enter a valid UPN, e.g. "+sam+"@corp.contoso.com"); return; }
+    if(inv.ad.users.some(u=>norm(u)===norm(sam))){ winToast("A user named '"+sam+"' already exists"); return; }
+    inv.ad.users.push(sam); inv.ad.upns=inv.ad.upns||{}; inv.ad.upns[sam]=upn;
+    w.dlg=null; render(); winToast("User '"+sam+"' created"); return; }
   /* GPMC */
   if(a==="gpmsel"){ w.gpmsel=arg; render(); return; }
   if(a==="new-gpo"){ w.dlg={kind:"gponame", title:"New GPO", f:{name:"FSLogix-Profiles"}}; render(); return; }
-  if(a==="dlg-gpo"){ w.gpoCreated=true; w.dlg=null; w.gpmsel="FSLogix-Profiles"; render(); winToast("GPO created and linked to the AVD OU"); return; }
+  if(a==="dlg-gpo"){ const nm=(w.dlg.f.name||"").trim();
+    if(!nm){ winToast("Enter a GPO name"); return; }
+    w.gpoCreated=true; inv.gpo.name=nm; w.dlg=null; w.gpmsel=nm; render();
+    winToast("GPO '"+nm+"' created and linked to "+(inv.ad.ouName||"the OU")); return; }
   if(a==="open-gpedit"){ w.app="gpedit"; render(); return; }
-  if(a==="gp-open"){ w.dlg={kind:"policy", title:"Policy setting", policy:arg, f:{enabled:"enabled", vhdloc:w.gp.vhdloc||UNC, ptype:w.gp.ptype||"profile", size:w.gp.size||"30000"}}; render(); return; }
+  if(a==="gp-open"){ w.dlg={kind:"policy", title:"Policy setting", policy:arg, f:{enabled:"enabled", vhdloc:w.gp.vhdloc||labUnc(), ptype:w.gp.ptype||"profile", size:w.gp.size||"30000"}}; render(); return; }
   if(a==="dlg-policy"){
-    const d=w.dlg, f=d.f;
-    if(f.enabled==="enabled"){
-      if(d.policy==="vhdloc") w.gp.vhdloc=f.vhdloc;
-      if(d.policy==="ptype") w.gp.ptype=f.ptype;
-      if(d.policy==="size") w.gp.size=f.size;
-    } else { if(d.policy==="vhdloc") w.gp.vhdloc=""; if(d.policy==="ptype") w.gp.ptype=""; if(d.policy==="size") w.gp.size=""; }
-    if(d.policy==="enabled") w.gp.enabled = f.enabled==="enabled";
-    inv.gpo.fslogix = w.gp.enabled===true && norm(w.gp.vhdloc).indexOf("avdprofilescorp.file.core.windows.net")>=0 && norm(w.gp.vhdloc).indexOf("fslogix")>=0 && w.gp.ptype==="profile" && parseInt(w.gp.size,10)>=10000;
+    const dd=w.dlg, ff=dd.f;
+    if(ff.enabled==="enabled"){
+      if(dd.policy==="vhdloc") w.gp.vhdloc=ff.vhdloc;
+      if(dd.policy==="ptype") w.gp.ptype=ff.ptype;
+      if(dd.policy==="size") w.gp.size=ff.size;
+    } else { if(dd.policy==="vhdloc") w.gp.vhdloc=""; if(dd.policy==="ptype") w.gp.ptype=""; if(dd.policy==="size") w.gp.size=""; }
+    if(dd.policy==="enabled") w.gp.enabled = ff.enabled==="enabled";
+    /* the UNC must point at a share that really exists in this lab */
+    const acct=inv.storage[0];
+    const path=norm(w.gp.vhdloc).replace(/\//g,"\\");
+    const pointsAtAccount = !!acct && path.indexOf(norm(acct.name)+".file.core.windows.net")>=0;
+    const pointsAtShare = inv.shares.some(sh=>path.endsWith("\\"+norm(sh.name)) || path.indexOf("\\"+norm(sh.name)+"\\")>=0);
+    inv.gpo.fslogix = w.gp.enabled===true && pointsAtAccount && pointsAtShare &&
+      w.gp.ptype==="profile" && parseInt(w.gp.size,10)>0;
+    if(w.gp.enabled===true && w.gp.vhdloc && !inv.gpo.fslogix){
+      if(!pointsAtAccount) winToast("VHD location does not match your storage account"+(acct?" ("+acct.name+")":""));
+      else if(!pointsAtShare) winToast("VHD location does not match any file share you created");
+    }
     w.dlg=null; render(); return;
   }
   /* entra */
   if(a==="entra-back"){ w.entStep=Math.max(0,w.entStep-1); render(); return; }
-  if(a==="entra-next"){ w.entStep++; render(); return; }
+  if(a==="entra-next"){ if(w.entStep===0 && !inv.ad.forest){ winToast("No AD DS forest found — promote a domain controller first (Exercise 3)"); return; } w.entStep++; render(); return; }
   if(a==="entra-install"){ w.entStep++; render(); return; }
-  if(a==="entra-close"){ w.entStep=0; w.app=null; inv.ad.sync=true; render(); winToast("Entra Connect completed — users synced"); return; }
+  if(a==="entra-close"){ w.entStep=0; w.app=null; inv.ad.sync=true; render(); winToast("Entra Connect completed — "+inv.ad.users.length+" user(s) synced from "+(inv.ad.forest||"AD DS")); return; }
   /* web */
   if(a==="webupn"){ state.web.upn=document.querySelector('[data-action="webupn"]').value; return; }
   if(a==="webpw"){ return; }
-  if(a==="weblogin"){ if(norm(state.web.upn).includes("@corp.contoso.com")){ state.web.inSession=false; state.web.err=""; inv.session.connected=true; /* show resources */ render(); } else { state.web.err="No account found — use avduser01@corp.contoso.com"; render(); } return; }
-  if(a==="websession"){ state.web.inSession=true; render(); return; }
-  if(a==="websignout"){ state.web.inSession=false; inv.session.vhdx=true; state.module=null; render(); toast("Signed out — profile VHDX written to the fslogix share (check the Storage account module)"); return; }
+  if(a==="weblogin"){
+    const upn=norm(state.web.upn);
+    const known=(inv.ad.users||[]).some(u=>{ const full=norm((inv.ad.upns||{})[u]||(u+"@"+(inv.ad.forest||"corp.contoso.com"))); return full===upn || norm(u)===upn.split("@")[0]; });
+    if(!inv.ad.users.length){ state.web.err="No account found — create a user in Active Directory first (Exercise 4)."; render(); return; }
+    if(!inv.ad.sync){ state.web.err="Sign-in failed — this account has not synced to Microsoft Entra ID yet (Exercise 5)."; render(); return; }
+    if(known){ state.web.stage="resources"; state.web.err=""; inv.session.connected=true; render(); } else { state.web.err="No account found in Microsoft Entra ID for '"+esc(state.web.upn)+"'."; render(); } return; }
+  if(a==="websession"){ state.web.stage="session"; render(); return; }
+  if(a==="websignout"){
+    state.web.stage="signin"; state.module=null;
+    if(inv.gpo.fslogix){
+      const path=norm(state.w&&state.w.gp?state.w.gp.vhdloc:"")||norm(labUnc());
+      const sh=inv.shares.find(x=>path.indexOf(norm(x.name))>=0)||inv.shares[0];
+      inv.session.vhdx=true; inv.session.vhdxShare=sh?sh.name:"";
+      render(); toast("Signed out — profile VHDX written to the '"+(sh?sh.name:"")+"' share (check the Storage account module)");
+    } else {
+      inv.session.vhdx=false; render();
+      toast("Signed out — FSLogix is not configured, so the profile stayed local (no VHDX written)");
+    }
+    return; }
   /* storage */
+  if(a==="share-new"){ state.storage.dlg={name:"fslogix",quota:"100"}; render(); return; }
+  if(a==="share-cancel"){ state.storage.dlg=null; render(); return; }
+  if(a==="sharef"){ const el=document.querySelector('[data-action="sharef"][data-arg="'+arg+'"]'); if(el&&state.storage.dlg){ state.storage.dlg[arg]=el.value; } return; }
+  if(a==="share-create"){
+    const f=state.storage.dlg||{}; const nm=(f.name||"").trim();
+    if(!/^[a-z0-9]([a-z0-9-]{1,61})[a-z0-9]$/.test(nm)){ toast("Share name: 3-63 chars, lowercase letters, numbers and hyphens"); return; }
+    if(inv.shares.some(x=>norm(x.name)===norm(nm))){ toast("A file share named '"+nm+"' already exists."); return; }
+    const q=parseInt(f.quota||"100",10); if(!(q>=1&&q<=102400)){ toast("Quota must be between 1 and 102400 GiB"); return; }
+    inv.shares.push({name:nm,quota:String(q)}); state.storage.dlg=null; render(); toast("File share '"+nm+"' created"); return; }
+  if(a==="share-open"){ state.storage.share=arg; state.storage.view="browse"; render(); return; }
   if(a==="storage-view"){ state.storage.view=arg; render(); return; }
 }
-function resetDev(vm){ state.w={ vm, stage:"rdp", lockStep:"lock", fail:false, app:null, smWiz:-1, roleChecked:false, featAdded:false, promoteWiz:-1, entStep:0, dlg:null, gpoCreated:false, gp:{enabled:null,vhdloc:"",ptype:"",size:""}, adsel:"corp.contoso.com", gpmsel:"corp.contoso.com", pf:{} }; }
+/* Per-device state lives in inv.dev so it SURVIVES disconnect/reconnect,
+   exactly like a real RDP session on a real server. */
+function devState(vm){
+  if(!inv.dev[vm]) inv.dev[vm]={ app:null, smWiz:-1, roleChecked:false, featAdded:false, roleInstalled:false,
+    autoRestart:false, promoteWiz:-1, pf:{fl:"2016"}, entStep:0, gpoCreated:false,
+    gp:{enabled:null,vhdloc:"",ptype:"",size:""}, adsel:"", gpmsel:"" };
+  return inv.dev[vm];
+}
+function resetDev(vm){
+  const dsx=devState(vm);
+  if(!dsx.adsel) dsx.adsel="corp.contoso.com";
+  if(!dsx.gpmsel) dsx.gpmsel="corp.contoso.com";
+  dsx.vm=vm; dsx.stage="rdp"; dsx.lockStep="lock"; dsx.fail=false; dsx.dlg=null; dsx.startOpen=false; /* transient only */
+  state.w=dsx;
+}
 function resetAll(){
   state.module=null;
-  state.p={ signedIn:false, email:"", view:"home", service:null, blade:null, form:{}, tab:0, deploy:{active:false,step:0,name:"",res:"",resName:"",msg:""}, notifs:[], notifOpen:false, search:"", searchOpen:false, catalog:0, railCollapsed:false, favs:["all","rg","vm","vnet","storage","avd","entra","sub"], filter:"" };
-  state.web={ stage:"signin", inSession:false, upn:CRED.user };
-  state.storage={ view:"overview" };
+  state.p={ signedIn:false, email:"", view:"home", service:null, blade:null, form:{}, tab:0, deploy:{active:false,step:0,name:"",res:"",resName:"",msg:""}, notifs:[], notifOpen:false, search:"", searchOpen:false, catalog:0, railCollapsed:false, railOpen:false, favs:["all","rg","vm","vnet","storage","avd","entra","sub"], filter:"" };
+  state.web={ stage:"signin", upn:CRED.user, err:"" };
+  state.storage={ view:"overview", share:"", dlg:null };
   inv.rg=[];inv.vnet=[];inv.vm=[];inv.storage=[];inv.hostpool=[];
   inv.ad={forest:"",ou:false,group:false,users:[],sync:false};
-  inv.gpo={fslogix:false}; inv.session={connected:false,vhdx:false};
+  inv.gpo={fslogix:false,name:""}; inv.avd={assigned:false,registered:false}; inv.shares=[]; inv.session={connected:false,vhdx:false,vhdxShare:""};
+  inv.dev={};
+  state.w={ vm:null, stage:"rdp", lockStep:"lock", fail:false, app:null, smWiz:-1, roleChecked:false, featAdded:false, roleInstalled:false, autoRestart:false, promoteWiz:-1, entStep:0, dlg:null, gpoCreated:false, gp:{enabled:null,vhdloc:"",ptype:"",size:""}, adsel:"", gpmsel:"", pf:{} };
+  lastModuleKey=null;
   state.guideOpen=false;
   render(); toast("Environment reset");
 }
@@ -1352,14 +1598,18 @@ function init(){
     const a=t.getAttribute("data-action");
     if(a==="psearch"){ state.p.search=t.value; state.p.searchOpen=true; const w=document.getElementById("searchdrop-wrap"); if(w) w.innerHTML=searchDropHtml(); return; }
     if(a==="pfilter"){ state.p.filter=t.value; state.p.view="allservices"; state.p.blade=null; render(); const el=document.getElementById("svcfilter"); if(el){ el.focus(); const v=el.value; el.value=""; el.value=v; } return; }
+    if(a==="wpf"){ const arg=t.getAttribute("data-arg"); state.w.pf=state.w.pf||{}; state.w.pf[arg]=t.value; return; }
+    if(a==="sharef"){ const arg=t.getAttribute("data-arg"); if(state.storage.dlg) state.storage.dlg[arg]=t.value; return; }
+    if(a==="webupn"){ state.web.upn=t.value; return; }
     if(a==="pf"){ const arg=t.getAttribute("data-arg"); const p=arg.split(":"); pform(p[0])[p.slice(1).join(":")]=t.value; return; }
     if(a==="dlgf"){ const arg=t.getAttribute("data-arg"); if(t.type==="radio"){ state.w.dlg.f.enabled=t.value; } else state.w.dlg.f[arg]=t.value; return; }
   });
   document.addEventListener("change",function(e){
     const t=e.target; if(!t||!t.getAttribute) return;
     const a=t.getAttribute("data-action");
+    if(a==="wpf"){ const arg=t.getAttribute("data-arg"); state.w.pf=state.w.pf||{}; state.w.pf[arg]=t.value; return; }
     if(a==="pf"){ const arg=t.getAttribute("data-arg"); const p=arg.split(":"); const id=p.slice(1).join(":"); const res=p[0];
-      if(t.type==="radio"){ pform(res)[id]=t.value; } else if(t.type==="select"){ pform(res)[id]=t.value; } return; }
+      if(t.type==="radio"){ pform(res)[id]=t.value; } else if(t.tagName==="SELECT"){ pform(res)[id]=t.value; } return; }
     if(a==="dlgf"){ const arg=t.getAttribute("data-arg"); if(t.type==="radio"){ state.w.dlg.f.enabled=t.value; } else state.w.dlg.f[arg]=t.value; return; }
   });
   document.addEventListener("keydown",function(e){
@@ -1369,5 +1619,5 @@ function init(){
 }
 init();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2ab23a11b12a27c',t:'MTc4NjY1OTk2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2ac045c5aaba994',t:'MTc4NjY2OTE2OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
