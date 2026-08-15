@@ -379,6 +379,7 @@
 </style>
 </head>
 <body>
+<div style="border:1px solid #d5dbdb;border-left:4px solid #687078;background:#fafafa;color:#545b64;font-size:12px;line-height:1.5;padding:10px 14px;border-radius:4px;margin:8px 12px;font-family:Arial,Helvetica,sans-serif"><b>Unofficial training simulation.</b> This lab is an independent educational practice tool and is not affiliated with, sponsored by, or endorsed by Microsoft Corporation. "Microsoft", "Azure", and "Azure Virtual Desktop" are trademarks of Microsoft Corporation. This is a visual replica for practice only — no Azure resources are created.</div>
 
 <div id="app"></div>
 <div class="toast" id="toast"></div>
@@ -589,7 +590,7 @@ function notifyPortal(icon,title,msg){ state.p.notifs.unshift({icon:icon,title:t
 function portalHtml(){
   const p=state.p;
   if(!p.signedIn){
-    return '<div class="module"><div class="signin-wrap"><div class="signin"><div class="logo"><span class="ms">MS</span> Microsoft</div><h2>Sign in</h2>'+
+    return '<div class="module"><div class="signin-wrap"><div class="signin"><div class="logo"><span class="ms">☁</span> Microsoft</div><h2>Sign in</h2>'+
     '<div class="pfield"><label>Email or phone</label><input type="text" value="'+esc(p.email)+'" placeholder="admin@contoso.onmicrosoft.com" data-action="portalemail"></div>'+
     '<button class="btn" style="width:100%" data-action="portalnext">Next</button>'+
     '<p class="hint" style="margin-top:10px">Lab credential: admin@contoso.onmicrosoft.com</p>'+
@@ -605,7 +606,7 @@ function portalHtml(){
 function azTopHtml(){
   const p=state.p;
   return '<button class="azicon" data-action="prail" title="Menu">'+ic('grid')+'</button>'+
-    '<div class="azlogo" data-action="pnav" data-arg="home"><span class="ms">MS</span> Microsoft Azure</div>'+
+    '<div class="azlogo" data-action="pnav" data-arg="home"><span class="ms">☁</span> Microsoft Azure</div>'+
     '<div class="azsearch"><div class="box"><span class="mag">'+ic('search')+'</span><input type="text" placeholder="Search resources, services, and docs" value="'+esc(p.search)+'" data-action="psearch"><span class="kbd">G+/</span></div>'+
     '<div id="searchdrop-wrap">'+(p.searchOpen? searchDropHtml() : '')+'</div></div>'+
     '<div class="azright">'+
